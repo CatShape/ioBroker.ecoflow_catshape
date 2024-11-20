@@ -1,0 +1,91 @@
+{
+    "common": {
+        "name": "ecoflow_catshape",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "titleLang": {
+            "en": "ecoflow_catshape",
+            "de": "ecoflow_catshape",
+            "ru": "ecoflow_catshape",
+            "pt": "ecoflow_catshape",
+            "nl": "ecoflow_catshape",
+            "fr": "ecoflow_catshape",
+            "it": "ecoflow_catshape",
+            "es": "ecoflow_catshape",
+            "pl": "ecoflow_catshape",
+            "uk": "ecoflow_catshape",
+            "zh-cn": "ecoflow_catshape"
+        },
+        "desc": {
+            "en": "Ecoflow Adapter based on official Ecoflow API",
+            "de": "Ecoflow-Adapter basierend auf der offiziellen Ecoflow-API",
+            "ru": "Адаптер Ecoflow на основе официального API Ecoflow.",
+            "pt": "Adaptador Ecoflow baseado na API oficial Ecoflow",
+            "nl": "Ecoflow-adapter gebaseerd op de officiële Ecoflow API",
+            "fr": "Adaptateur Ecoflow basé sur l'API Ecoflow officielle",
+            "it": "Adattatore Ecoflow basato sull'API Ecoflow ufficiale",
+            "es": "Adaptador Ecoflow basado en la API oficial de Ecoflow",
+            "pl": "Adapter Ecoflow oparty na oficjalnym API Ecoflow",
+            "uk": "Адаптер Ecoflow на основі офіційного API Ecoflow",
+            "zh-cn": "基于官方 Ecoflow API 的 Ecoflow 适配器"
+        },
+        "authors": [
+            "CatShape <ahofmann@yahoo.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
+        "platform": "Javascript/Node.js",
+        "icon": "ecoflow_catshape.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/CatShape/ioBroker.ecoflow_catshape/main/admin/ecoflow_catshape.png",
+        "readme": "https://github.com/CatShape/ioBroker.ecoflow_catshape/blob/main/README.md",
+        "loglevel": "info",
+        "tier": 3,
+        "mode": "daemon",
+        "type": "household",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "adminUI": {
+            "config": "json"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=6.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": "7.0.23"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
