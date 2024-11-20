@@ -1,0 +1,1 @@
+# ioBroker.ecoflow_catshape
