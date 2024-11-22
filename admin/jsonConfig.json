@@ -21,8 +21,8 @@
                     "sort": false,
                     "default": "{second: [3, 15, 27, 39, 51]}"
                 }
-            ],
-        }
+            ]
+        },
         "_introTableDevices": {
             "type": "staticText",
             "text": "Please add one entry for each of your Ecoflow devices.",
@@ -79,6 +79,6 @@
                     "default": false
                 }
             ]
-        },
+        }
     }
 }
