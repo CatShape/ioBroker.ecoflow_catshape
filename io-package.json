@@ -73,18 +73,22 @@
         },
         "dependencies": [
             {
-                "js-controller": ">=6.0.11"
+                "js-controller": ">=3.0.11"
             }
         ],
         "globalDependencies": [
             {
-                "admin": "7.0.23"
+                "admin": "5.0.23"
             }
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "key1": true,
+        "accessKey1": "accessKey1",
+        "secretKey1": "secretKey1",
+        "key2": false,
+        "accessKey2": "accessKey2",
+        "secretKey2": "secretKey2"
     },
     "objects": [],
     "instanceObjects": []
