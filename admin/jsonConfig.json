@@ -2,14 +2,34 @@
     "i18n": true,
     "type": "panel",
     "items": {
-        "option1": {
+        "key1": {
             "type": "checkbox",
-            "label": "option1",
+            "label": "Active",
             "newLine": true
         },
-        "option2": {
+        "accessKey1": {
             "type": "text",
-            "label": "option2",
+            "label": "Acess Key",
+            "newLine": true
+        },
+        "secretKey1": {
+            "type": "text",
+            "label": "Secret Key",
+            "newLine": true
+        },
+        "key2": {
+            "type": "checkbox",
+            "label": "Active",
+            "newLine": true
+        },
+        "accessKey2": {
+            "type": "text",
+            "label": "Acess Key",
+            "newLine": true
+        },
+        "secretKey2": {
+            "type": "text",
+            "label": "Secret Key",
             "newLine": true
         }
     }
