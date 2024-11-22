@@ -10,12 +10,12 @@
         "accessKey1": {
             "type": "text",
             "label": "Acess Key",
-            "newLine": true
+            "newLine": false
         },
         "secretKey1": {
             "type": "text",
             "label": "Secret Key",
-            "newLine": true
+            "newLine": false
         },
         "key2": {
             "type": "checkbox",
@@ -25,12 +25,12 @@
         "accessKey2": {
             "type": "text",
             "label": "Acess Key",
-            "newLine": true
+            "newLine": false
         },
         "secretKey2": {
             "type": "text",
             "label": "Secret Key",
-            "newLine": true
+            "newLine": false
         }
     }
 }
