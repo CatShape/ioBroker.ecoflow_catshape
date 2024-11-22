@@ -36,8 +36,8 @@ class EcoflowCatshape extends utils.Adapter {
 
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('config option1: ' + this.config.option1);
-        this.log.info('config option2: ' + this.config.option2);
+        this.log.info('config accessKey1: ' + this.config.accessKey1);
+        this.log.info('config accessKey2: ' + this.config.accessKey2);
 
         /*
         For every state in the system there has to be also an object of type state
@@ -75,7 +75,7 @@ class EcoflowCatshape extends utils.Adapter {
         await this.setStateAsync('testVariable', { val: true, ack: true });
 
         // same thing, but the state is deleted after 30s (getState will return null afterwards)
-        await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
+        //await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
 
         // examples for the checkPassword/checkGroup functions
         let result = await this.checkPasswordAsync('admin', 'iobroker');
