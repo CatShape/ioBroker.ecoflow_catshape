@@ -31,24 +31,31 @@
             "zh-cn": "ecoflow_catshape"
         },
         "desc": {
-            "en": "Ecoflow Adapter based on official Ecoflow API",
-            "de": "Ecoflow-Adapter basierend auf der offiziellen Ecoflow-API",
-            "ru": "Адаптер Ecoflow на основе официального API Ecoflow.",
-            "pt": "Adaptador Ecoflow baseado na API oficial Ecoflow",
-            "nl": "Ecoflow-adapter gebaseerd op de officiële Ecoflow API",
-            "fr": "Adaptateur Ecoflow basé sur l'API Ecoflow officielle",
-            "it": "Adattatore Ecoflow basato sull'API Ecoflow ufficiale",
-            "es": "Adaptador Ecoflow basado en la API oficial de Ecoflow",
-            "pl": "Adapter Ecoflow oparty na oficjalnym API Ecoflow",
-            "uk": "Адаптер Ecoflow на основі офіційного API Ecoflow",
-            "zh-cn": "基于官方 Ecoflow API 的 Ecoflow 适配器"
+            "en": "EcoFlow Adapter based on official EcoFlow API (HTTP)",
+            "de": "EcoFlow-Adapter basierend auf der offiziellen EcoFlow-API (HTTP)",
+            "ru": "Адаптер EcoFlow на основе официального API EcoFlow (HTTP).",
+            "pt": "Adaptador EcoFlow baseado na API oficial EcoFlow (HTTP)",
+            "nl": "EcoFlow-adapter gebaseerd op de officiële EcoFlow API (HTTP)",
+            "fr": "Adaptateur EcoFlow basé sur l'API EcoFlow officielle (HTTP)",
+            "it": "Adattatore EcoFlow basato sull'API EcoFlow ufficiale (HTTP)",
+            "es": "Adaptador EcoFlow basado en la API oficial de EcoFlow (HTTP)",
+            "pl": "Adapter EcoFlow oparty na oficjalnym API EcoFlow (HTTP)",
+            "uk": "Адаптер EcoFlow на основі офіційного API EcoFlow (HTTP)",
+            "zh-cn": "基于官方 EcoFlow API 的 EcoFlow (HTTP) 适配器"
         },
         "authors": [
             "CatShape <ahofmann@yahoo.com>"
         ],
         "keywords": [
             "ioBroker",
-            "template",
+            "EcoFlow",
+            "PowerStream",
+            "powerstation",
+            "Delta",
+            "River",
+            "Powerkit",
+            "PowerOcean",
+            "SmartHomePanel"
             "Smart Home",
             "home automation"
         ],
@@ -60,11 +67,11 @@
         "icon": "ecoflow_catshape.png",
         "enabled": true,
         "extIcon": "https://raw.githubusercontent.com/CatShape/ioBroker.ecoflow_catshape/main/admin/ecoflow_catshape.png",
-        "readme": "https://github.com/CatShape/ioBroker.ecoflow_catshape/blob/main/README.md",
+        "readme": "https://github.com/CatShape/ioBroker.ecoflow_catshape/main/README.md",
         "loglevel": "info",
         "tier": 3,
         "mode": "daemon",
-        "type": "household",
+        "type": "iot-systems",
         "compact": true,
         "connectionType": "cloud",
         "dataSource": "poll",
@@ -73,7 +80,7 @@
         },
         "dependencies": [
             {
-                "js-controller": ">=3.0.11"
+                "js-controller": ">=4.0.11"
             }
         ],
         "globalDependencies": [
@@ -82,13 +89,14 @@
             }
         ]
     },
+    "protectedNative": [
+        "devices.apiSecretKey"
+    ],
+    "encryptedNative": [
+        "devices.apiSecretKey"
+    ],
     "native": {
-        "key1": true,
-        "accessKey1": "accessKey1",
-        "secretKey1": "secretKey1",
-        "key2": false,
-        "accessKey2": "accessKey2",
-        "secretKey2": "secretKey2"
+        "devices": [],
     },
     "objects": [],
     "instanceObjects": []
