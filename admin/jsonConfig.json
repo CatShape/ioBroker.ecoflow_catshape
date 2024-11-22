@@ -1,36 +1,84 @@
 {
-    "i18n": true,
+    "i18n": false,
     "type": "panel",
     "items": {
-        "key1": {
-            "type": "checkbox",
-            "label": "Active",
+        "_introTableScheduleRules": {
+            "type": "staticText",
+            "text": "Please add one entry for each of the desired schedule rules.",
             "newLine": true
         },
-        "accessKey1": {
-            "type": "text",
-            "label": "Acess Key",
-            "newLine": false
-        },
-        "secretKey1": {
-            "type": "text",
-            "label": "Secret Key",
-            "newLine": false
-        },
-        "key2": {
-            "type": "checkbox",
-            "label": "Active",
-            "newLine": true
-        },
-        "accessKey2": {
-            "type": "text",
-            "label": "Acess Key",
-            "newLine": false
-        },
-        "secretKey2": {
-            "type": "text",
-            "label": "Secret Key",
-            "newLine": false
+        "scheduleRules": {
+            "sm": 12,
+            "newLine": true,
+            "type": "table",
+            "items": [
+                {
+                    "type": "text",
+                    "attr": "scheduleRule",
+                    "width": "100%",
+                    "title": "Schedule rule",
+                    "filter": false,
+                    "sort": false,
+                    "default": "{second: [3, 15, 27, 39, 51]}"
+                }
+            ],
         }
+        "_introTableDevices": {
+            "type": "staticText",
+            "text": "Please add one entry for each of your Ecoflow devices.",
+            "newLine": true
+        },
+        "devices": {
+            "sm": 12,
+            "newLine": true,
+            "type": "table",
+            "items": [
+                {
+                    "type": "text",
+                    "attr": "serialNo",
+                    "width": "20%",
+                    "title": "Serial number",
+                    "filter": false,
+                    "sort": false,
+                    "default": "xxxxx"
+                },
+                {
+                    "type": "text",
+                    "attr": "apiAccessKey",
+                    "width": "35%",
+                    "title": "API access key",
+                    "filter": false,
+                    "sort": false,
+                    "default": ""
+                },
+                {
+                    "type": "password",
+                    "attr": "apiSecretKey",
+                    "width": "35%",
+                    "title": "API secret key",
+                    "filter": false,
+                    "sort": false,
+                    "default": ""
+                },
+                {
+                    "type": "checkbox",
+                    "attr": "doNotUpdateOffline",
+                    "title": "Do not update the states if device is offline",
+                    "width": "5%",
+                    "filter": false,
+                    "sort": false,
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "attr": "updateQuotaState",
+                    "title": "Update quota state (it will automatically be updated whenever the states value is empty)",
+                    "width": "5%",
+                    "filter": false,
+                    "sort": false,
+                    "default": false
+                }
+            ]
+        },
     }
 }
