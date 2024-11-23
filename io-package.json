@@ -96,8 +96,8 @@
         "devices.apiSecretKey"
     ],
     "native": {
-        "cumulateDailyResetTime": "{hour: 3, minute: 1, second: 3}",
-        "scheduleRules": ["{second: [3, 15, 27, 39, 51]}"],
+        "cumulateDailyResetTime": "",
+        "scheduleRules": [],
         "devices": []
     },
     "objects": [],
