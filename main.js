@@ -12,7 +12,7 @@ const utils = require('@iobroker/adapter-core');
 // const fs = require("fs");
 
 class EcoflowCatshape extends utils.Adapter {
-
+    
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
@@ -27,18 +27,18 @@ class EcoflowCatshape extends utils.Adapter {
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
-
+    
     /**
      * Is called when databases are connected and adapter received configuration.
      */
     async onReady() {
         // Initialize your adapter here
-
+        
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('config accessKey1: ' + this.config.accessKey1);
-        this.log.info('config accessKey2: ' + this.config.accessKey2);
-
+        this.log.info('config cumulateDailyResetTime: ' + JSON.stringify(this.config.cumulateDailyResetTime));
+        this.log.info('config scheduleRules: ' + JSON.stringify(this.config.scheduleRules));
+        
         /*
         For every state in the system there has to be also an object of type state
         Here a simple template for a boolean variable named "testVariable"
@@ -55,36 +55,36 @@ class EcoflowCatshape extends utils.Adapter {
             },
             native: {},
         });
-
+        
         // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
         this.subscribeStates('testVariable');
         // You can also add a subscription for multiple states. The following line watches all states starting with "lights."
         // this.subscribeStates('lights.*');
         // Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
         // this.subscribeStates('*');
-
+        
         /*
             setState examples
             you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
         */
         // the variable testVariable is set to true as command (ack=false)
         await this.setStateAsync('testVariable', true);
-
+        
         // same thing, but the value is flagged "ack"
         // ack should be always set to true if the value is received from or acknowledged from the target system
         await this.setStateAsync('testVariable', { val: true, ack: true });
-
+        
         // same thing, but the state is deleted after 30s (getState will return null afterwards)
         //await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-
+        
         // examples for the checkPassword/checkGroup functions
         let result = await this.checkPasswordAsync('admin', 'iobroker');
         this.log.info('check user admin pw iobroker: ' + result);
-
+        
         result = await this.checkGroupAsync('admin', 'admin');
         this.log.info('check group user admin group admin: ' + result);
     }
-
+    
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
      * @param {() => void} callback
@@ -96,13 +96,13 @@ class EcoflowCatshape extends utils.Adapter {
             // clearTimeout(timeout2);
             // ...
             // clearInterval(interval1);
-
+        
             callback();
         } catch (e) {
             callback();
         }
     }
-
+    
     // If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
     // You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
     // /**
@@ -119,7 +119,7 @@ class EcoflowCatshape extends utils.Adapter {
     //         this.log.info(`object ${id} deleted`);
     //     }
     // }
-
+    
     /**
      * Is called if a subscribed state changes
      * @param {string} id
@@ -134,7 +134,7 @@ class EcoflowCatshape extends utils.Adapter {
             this.log.info(`state ${id} deleted`);
         }
     }
-
+    
     // If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
     // /**
     //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
@@ -146,7 +146,7 @@ class EcoflowCatshape extends utils.Adapter {
     //         if (obj.command === 'send') {
     //             // e.g. send email or pushover or whatever
     //             this.log.info('send command');
-
+    //
     //             // Send response in callback if required
     //             if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
     //         }
