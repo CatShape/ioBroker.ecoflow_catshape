@@ -56,12 +56,14 @@ class EcoflowCatshape extends utils.Adapter {
         for (numA = 1; numA <= numArrayLen; numA = numA + 1) {
             this.objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
         }
+        this.log.info('this.objAllApiKeys: ' + JSON.stringify(this.objAllApiKeys));
         
         for (numA = 0; numA < numArrayLen; numA = numA + 1) {
             objDevice = this.config.devices[numA];
             //objDevice.apiKey = this.objAllApiKeys[objDevice.apiKey];
             this.objDevices[objDevice.serialNumber] = objDevice;
         }
+        this.log.info('this.objDevices: ' + JSON.stringify(this.objDevices));
         
         
         /*
@@ -71,7 +73,9 @@ class EcoflowCatshape extends utils.Adapter {
         */
         
         for (stringKey in this.objDevices) {
+            this.log.info('stringKey: ' + stringKey);
             objDevice = this.objDevices[stringKey];
+            this.log.info('objDevice: ' + JSON.stringify(objDevice));
             
             await this.setObjectNotExistsAsync(
                 objDevice.serialNumber, {
@@ -85,7 +89,7 @@ class EcoflowCatshape extends utils.Adapter {
             
             await this.setObjectNotExistsAsync(
                 objDevice.serialNumber + '.name', {
-                    type: 'state',
+                    type: 'state'
                     , common: {
                         type: 'string'
                         , name: 'Name'
@@ -104,7 +108,7 @@ class EcoflowCatshape extends utils.Adapter {
             
             await this.setObjectNotExistsAsync(
                 objDevice.serialNumber + '.online', {
-                    type: 'state',
+                    type: 'state'
                     , common: {
                         type: 'boolean'
                         , name: 'Online'
@@ -127,7 +131,7 @@ class EcoflowCatshape extends utils.Adapter {
             
             await this.setObjectNotExistsAsync(
                 objDevice.serialNumber + '.productName', {
-                    type: 'state',
+                    type: 'state'
                     , common: {
                         type: 'string'
                         , name: 'Product name'
@@ -146,7 +150,7 @@ class EcoflowCatshape extends utils.Adapter {
             
             await this.setObjectNotExistsAsync(
                 objDevice.serialNumber + '.quota', {
-                    type: 'state',
+                    type: 'state'
                     , common: {
                         type: 'string'
                         , name: 'Quota'
@@ -183,10 +187,10 @@ class EcoflowCatshape extends utils.Adapter {
         
         // examples for the checkPassword/checkGroup functions
         let result = await this.checkPasswordAsync('admin', 'iobroker');
-        this.log.info('check user admin pw iobroker: ' + result);
+        //this.log.info('check user admin pw iobroker: ' + result);
         
         result = await this.checkGroupAsync('admin', 'admin');
-        this.log.info('check group user admin group admin: ' + result);
+        //this.log.info('check group user admin group admin: ' + result);
     }
     
     /**
