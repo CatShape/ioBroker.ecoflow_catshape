@@ -43,7 +43,7 @@
             "items": [
                 {
                     "type": "text",
-                    "attr": "serialNo",
+                    "attr": "serialNumber",
                     "width": "20%",
                     "title": "Serial number",
                     "filter": false,
