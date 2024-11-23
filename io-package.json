@@ -96,7 +96,7 @@
         "apiKeys.apiSecretKey"
     ],
     "native": {
-        "cumulateDailyResetTime": "{hour: 0, minute: 0, second: 0}",
+        "cumulateDailyResetTime": "{\"hour\": 0, \"minute\": 0, \"second\": 0}",
         "scheduleRules": [],
         "apiKeys": [],
         "devices": []
