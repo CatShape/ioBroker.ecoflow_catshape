@@ -2,6 +2,12 @@
     "i18n": false,
     "type": "panel",
     "items": {
+        "cumulateDailyResetTime": {
+            "type": "text",
+            "label": "cumulateDailyResetTime",
+            "default": "{hour: 3, minute: 1, second: 3}",
+            "newLine": true
+        },
         "_introTableScheduleRules": {
             "type": "staticText",
             "text": "Please add one entry for each of the desired schedule rules.",
