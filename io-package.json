@@ -90,14 +90,15 @@
         ]
     },
     "protectedNative": [
-        "devices.apiSecretKey"
+        "apiKeys.apiSecretKey"
     ],
     "encryptedNative": [
-        "devices.apiSecretKey"
+        "apiKeys.apiSecretKey"
     ],
     "native": {
         "cumulateDailyResetTime": "{hour: 0, minute: 0, second: 0}",
         "scheduleRules": [],
+        "apiKeys": [],
         "devices": []
     },
     "objects": [],
