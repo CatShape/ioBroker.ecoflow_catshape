@@ -11,6 +11,9 @@ const utils = require('@iobroker/adapter-core');
 // Load your modules here, e.g.:
 // const fs = require("fs");
 
+const stringEcoflowApiUrl = 'https://api-e.ecoflow.com/iot-open/sign/';
+
+
 class EcoflowCatshape extends utils.Adapter {
     
     /**
@@ -26,6 +29,10 @@ class EcoflowCatshape extends utils.Adapter {
         // this.on('objectChange', this.onObjectChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
+        
+        this.objAllApiKeys = {};
+        this.objDevices = {};
+        this.objCumulateDailyResetTime = {};
     }
     
     /**
@@ -36,28 +43,125 @@ class EcoflowCatshape extends utils.Adapter {
         
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.info('config cumulateDailyResetTime: ' + JSON.stringify(this.config.cumulateDailyResetTime));
-        this.log.info('config scheduleRules: ' + JSON.stringify(this.config.scheduleRules));
+        //this.log.info('config cumulateDailyResetTime: ' + typeof this.config.cumulateDailyResetTime);
+        //this.log.info('config scheduleRules: ' + typeof this.config.scheduleRules[0]);
+        
+        let numA = 0;
+        let numArrayLen = this.config.apiKeys;
+        let objDevice = {};
+        let stringKey = '';
+        
+        this.objCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
+        
+        for (numA = 1; numA <= numArrayLen; numA = numA + 1) {
+            this.objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
+        }
+        
+        for (numA = 0; numA < numArrayLen; numA = numA + 1) {
+            objDevice = this.config.devices[numA];
+            //objDevice.apiKey = this.objAllApiKeys[objDevice.apiKey];
+            this.objDevices[objDevice.serialNumber] = objDevice;
+        }
+        
         
         /*
         For every state in the system there has to be also an object of type state
         Here a simple template for a boolean variable named "testVariable"
         Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
         */
-        await this.setObjectNotExistsAsync('testVariable', {
-            type: 'state',
-            common: {
-                name: 'testVariable',
-                type: 'boolean',
-                role: 'indicator',
-                read: true,
-                write: true,
-            },
-            native: {},
-        });
+        
+        for (stringKey in this.objDevices) {
+            objDevice = this.objDevices[stringKey];
+            
+            await this.setObjectNotExistsAsync(
+                objDevice.serialNumber, {
+                    type: 'device'
+                    , common: {
+                        name: objDevice.serialNumber
+                    }
+                    , native: {}
+                }
+            );
+            
+            await this.setObjectNotExistsAsync(
+                objDevice.serialNumber + '.name', {
+                    type: 'state',
+                    , common: {
+                        type: 'string'
+                        , name: 'Name'
+                        , desc: 'Device name'
+                        , role: 'state'
+                        , read: true
+                        , write: false
+                    }
+                    , native: {
+                        ecoflowApi: {
+                            quotaValueKey: 'deviceName'
+                        }
+                    }
+                }
+            );
+            
+            await this.setObjectNotExistsAsync(
+                objDevice.serialNumber + '.online', {
+                    type: 'state',
+                    , common: {
+                        type: 'boolean'
+                        , name: 'Online'
+                        , desc: 'Device is online'
+                        , role: 'state'
+                        , read: true
+                        , write: false
+                    }
+                    , native: {
+                        ecoflowApi: {
+                            quotaValueKey: 'online'
+                            , valueMap: {
+                                '0': false
+                                , '1': true
+                            }
+                        }
+                    }
+                }
+            );
+            
+            await this.setObjectNotExistsAsync(
+                objDevice.serialNumber + '.productName', {
+                    type: 'state',
+                    , common: {
+                        type: 'string'
+                        , name: 'Product name'
+                        , desc: 'Product name'
+                        , role: 'state'
+                        , read: true
+                        , write: false
+                    }
+                    , native: {
+                        ecoflowApi: {
+                            quotaValueKey: 'productName'
+                        }
+                    }
+                }
+            );
+            
+            await this.setObjectNotExistsAsync(
+                objDevice.serialNumber + '.quota', {
+                    type: 'state',
+                    , common: {
+                        type: 'string'
+                        , name: 'Quota'
+                        , desc: 'Quota'
+                        , role: 'state'
+                        , read: true
+                        , write: false
+                    }
+                    , native: {}
+                }
+            );
+        }
         
         // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-        this.subscribeStates('testVariable');
+        // this.subscribeStates('testVariable');
         // You can also add a subscription for multiple states. The following line watches all states starting with "lights."
         // this.subscribeStates('lights.*');
         // Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
@@ -68,11 +172,11 @@ class EcoflowCatshape extends utils.Adapter {
             you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
         */
         // the variable testVariable is set to true as command (ack=false)
-        await this.setStateAsync('testVariable', true);
+        //await this.setStateAsync('testVariable', true);
         
         // same thing, but the value is flagged "ack"
         // ack should be always set to true if the value is received from or acknowledged from the target system
-        await this.setStateAsync('testVariable', { val: true, ack: true });
+        //await this.setStateAsync('testVariable', { val: true, ack: true });
         
         // same thing, but the state is deleted after 30s (getState will return null afterwards)
         //await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
@@ -152,8 +256,10 @@ class EcoflowCatshape extends utils.Adapter {
     //         }
     //     }
     // }
-
+    
+    
 }
+
 
 if (require.main !== module) {
     // Export the constructor in compact mode
@@ -164,4 +270,155 @@ if (require.main !== module) {
 } else {
     // otherwise start the instance directly
     new EcoflowCatshape();
+}
+
+
+function getHeaders(objApiKey, objData) {
+    
+    const dateNow = new Date();
+    const stringTimestamp = dateNow.getTime().toFixed(0);
+    const stringNonce = Math.floor(Math.random() * 1000000).toFixed(0).padStart(6, '0');
+    
+    let stringA = '';
+    
+    stringA = getSignature(objApiKey, objData, stringNonce, stringTimestamp);
+    
+    return {
+        accessKey: objApiKey.accessKey
+        , nonce: stringNonce
+        , timestamp: stringTimestamp
+        , sign: stringA
+        , 'Content-Type': 'application/json;charset=UTF-8'
+    };
+}
+
+
+function getSignature(objApiKey, objParams, stringNonce, stringTimestamp) {
+    
+    let arrayA = [];
+    let stringA = '';
+    
+    if (objParams) {
+        if (!objectIsEmpty(objParams)) {
+            arrayA = flattenIntoArray('', '=', objParams, '.');
+            arrayA.sort();
+        }
+    }
+    arrayA = arrayA.concat(['accessKey=' + objApiKey.accessKey, 'nonce=' + stringNonce, 'timestamp=' + stringTimestamp]);
+    stringA = arrayA.join('&');
+    //log('stringA: ' + stringA, 'info');
+    stringA = crypto.createHmac('sha256', objApiKey.secretKey).update(stringA).digest('hex');
+    //log('sign: ' + stringA, 'info');
+    return stringA;
+}
+
+
+function flattenIntoArray(stringKey, stringSeparator, anyValue, stringJoinKey) {
+    
+    let stringType = typeof anyValue;
+    let arrayRet = [];
+    let indexA = 0;
+    let stringPrefix = '';
+    let stringA = '';
+    
+    if (Array.isArray(anyValue)) {
+        for (indexA = 0; indexA < anyValue.length; indexA = indexA + 1) {
+            arrayRet = arrayRet.concat(flattenIntoArray(stringKey + '[' + indexA.toFixed(0) + ']', stringSeparator, anyValue[indexA], stringJoinKey));
+        }
+    } else if (stringType == 'object') {
+        if (stringKey != '') {
+            stringPrefix = stringKey + stringJoinKey;
+        }
+        for (stringA in anyValue) {
+            arrayRet = arrayRet.concat(flattenIntoArray(stringPrefix + stringA, stringSeparator, anyValue[stringA], stringJoinKey));
+        }
+    } else if (stringType == 'string') {
+        arrayRet = [stringKey + stringSeparator + anyValue];
+    } else if (stringType == 'number') {
+        arrayRet = [stringKey + stringSeparator + anyValue.toString()];
+    } else {
+        log('flattenIntoArray: Unsupported value type (' + typeof anyValue + '): ' + String(anyValue), 'warn');
+    }
+    return arrayRet;
+}
+
+
+function objectIsEmpty(objA) {
+    
+    return (Object.keys(objA).length === 0);
+}
+
+
+function mergeArrayOfObjectsIntoObject(arrayOfObjects) {
+    
+    const numLen = arrayOfObjects.length
+    
+    let objRet = {};
+    let index = 0;
+    let stringKey = '';
+    
+    for (index = 0; index < numLen; index = index + 1) {
+        for (stringKey in arrayOfObjects[index]) {
+            if (!objRet.hasOwnProperty(stringKey)) {
+                objRet[stringKey] = arrayOfObjects[index][stringKey];
+            }
+        }
+    }
+    return objRet;
+}
+
+
+function getArrayWithKeysOfMap(map, valueProperty) {
+    
+    const arrayRet = [];
+    let arrayA = [];
+    
+    for (arrayA of map.entries()) {
+        if (arrayA[1].hasOwnProperty(valueProperty)) {
+            arrayRet.push(arrayA[0]);
+        }
+    }
+    return arrayRet;
+}
+
+
+// Examples: map with (key, value) pairs: 
+// (-3, {prop1: 5, prop2: 120}), (-1, {prop1: 0, prop2: 365}), (4, {prop2: 72}), (9, {prop1: 20, prop2: 66}), (10, {prop1: 20, prop2: 2})
+// interpolateMapLinear(map, 7, 'prop1') returns 16
+// interpolateMapLinear(map, -9, 'prop1') returns 20
+function interpolateMapLinear(map, atKey, valueProperty) {
+    
+    const arrayKeys = getArrayWithKeysOfMap(map, valueProperty);
+    if (arrayKeys.includes(atKey)) {
+        return map.get(atKey)[valueProperty];
+    }
+    
+    const arrayKeysLen = arrayKeys.length
+    
+    if (arrayKeysLen === 1) {
+        return map.get(arrayKeys[0])[valueProperty];
+    }
+    
+    let retValue = 0;
+    let index = 0;
+    let key1 = 0;
+    let key2 = 0;
+    let value1 = 0;
+    let value2 = 0;
+    
+    arrayKeys.sort(function(num1, num2) {return num1 - num2});
+    
+    key1 = arrayKeys[arrayKeysLen - 2];
+    key2 = arrayKeys[arrayKeysLen - 1];
+    for (index = 1; index < arrayKeysLen - 1; index = index + 1) {
+        if (atKey < arrayKeys[index]) {
+            key1 = arrayKeys[index - 1];
+            key2 = arrayKeys[index];
+            break;
+        }
+    }
+    value1 = map.get(key1)[valueProperty];
+    value2 = map.get(key2)[valueProperty];
+    retValue = value1 + (atKey - key1) * ((value2 - value1) / (key2 - key1));
+    return retValue;
 }
