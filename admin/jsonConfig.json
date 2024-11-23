@@ -27,7 +27,7 @@
                     "title": "Schedule rule",
                     "filter": false,
                     "sort": false,
-                    "default": "{second: [3, 15, 27, 39, 51]}"
+                    "default": "{\"second\": [3, 15, 27, 39, 51]}"
                 }
             ]
         },
