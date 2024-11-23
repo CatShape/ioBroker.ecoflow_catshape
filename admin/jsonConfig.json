@@ -78,7 +78,7 @@
                 {
                     "type": "checkbox",
                     "attr": "updateQuotaState",
-                    "title": "Update quota state (it will automatically be updated whenever the states value is empty)",
+                    "title": "Update quota state",
                     "width": "5%",
                     "filter": false,
                     "sort": false,
