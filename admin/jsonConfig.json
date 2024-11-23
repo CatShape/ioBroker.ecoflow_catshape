@@ -5,8 +5,10 @@
         "cumulateDailyResetTime": {
             "type": "text",
             "label": "cumulateDailyResetTime",
-            "default": "{hour: 3, minute: 1, second: 3}",
-            "newLine": true
+            "newLine": true,
+            "sm": 12,
+            "md": 6,
+            "lg": 4
         },
         "_introTableScheduleRules": {
             "type": "staticText",
