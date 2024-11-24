@@ -62,7 +62,22 @@ class EcoflowCatshape extends utils.Adapter {
         let stringId = '';
         let objStateObj = {};
         
-        this.objCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
+        try {
+            this.objCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
+            if (!this.objCumulateDailyResetTime.hasOwnProperty('hour')) {
+                this.objCumulateDailyResetTime.hour = 0;
+            }
+            if (!this.objCumulateDailyResetTime.hasOwnProperty('minute')) {
+                this.objCumulateDailyResetTime.minute = 0;
+            }
+            if (!this.objCumulateDailyResetTime.hasOwnProperty('second')) {
+                this.objCumulateDailyResetTime.second = 0;
+            }
+        } catch (error) {
+            this.log.error('Config "Reset time for cumulate daily states" is invalid. It has to be JSON-format. Example: {"hour": 3, "minute": 30}');
+            //this.log.error(error);
+            return;
+        }
         
         numArrayLen = this.config.apiKeys.length;
         if (numArrayLen < 1) {
@@ -85,7 +100,6 @@ class EcoflowCatshape extends utils.Adapter {
             this.objDevices[objDevice.serialNumber] = objDevice;
         }
         this.log.debug('this.objDevices: ' + JSON.stringify(this.objDevices));
-        //return;
         
         
         /*
@@ -289,15 +303,13 @@ class EcoflowCatshape extends utils.Adapter {
                 }
             );
             */
-            this.log.debug('id: ' + id);
-            this.log.debug('state: ' + JSON.stringify(state));
+            this.log.debug('id: ' + id + ', state: ' + JSON.stringify(state));
             if (!state.ack) {
                 this.sendDeviceState(id, state);
             }
-            this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } else {
             // The state was deleted
-            this.log.debug(`state ${id} deleted`);
+            this.log.debug('state ' + id + ' deleted');
         }
     }
     
@@ -342,8 +354,10 @@ class EcoflowCatshape extends utils.Adapter {
                 if (!objectIsEmpty(objDevices[stringKey])) {
                     objA = objDevices[stringKey];
                     this.log.debug('objA: ' + JSON.stringify(objA));
-                    if (this.objDevices[objA.sn].doNotUpdateOffline && (objA.online != 1)) {
+                    if (this.objDevices[stringKey].doNotUpdateOffline && (objA.online != 1)) {
                         this.updateDeviceOnlineState(objA);
+                        this.setStateChanged(stringKey + '.name', objA.deviceName, true);
+                        this.setStateChanged(stringKey + '.productName', objA.productName, true);
                     } else {
                         this.requestDeviceDataAndUpdateStates(objA);
                     }
