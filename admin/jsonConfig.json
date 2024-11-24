@@ -6,27 +6,51 @@
             "type": "text",
             "label": "node-cron schedule for getting data from EcoFlow",
             "newLine": true,
+            "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 4
+            "lg": 4,
+            "xl": 4
         },
         "cumulateDailyResetTime": {
             "type": "text",
             "label": "Reset time for cumulate daily states (state gets set to 0)",
-            "newLine": true,
+            "newLine": false,
+            "xs": 12,
             "sm": 12,
             "md": 6,
-            "lg": 4
+            "lg": 4,
+            "xl": 4
+        },
+        "_newLine1": {
+            "type": "staticText",
+            "text": "",
+            "newLine": true
+        },
+        "_apiKeysHeader": {
+            "newLine": true,
+            "type": "header",
+            "text": "EcoFlow API keys configuration",
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
+            "size": 3
         },
         "_introTableApiKeys": {
             "type": "staticText",
-            "text": "Please add one entry for each of your Ecoflow API keys.",
+            "text": "Please add one entry for each of your EcoFlow API keys.",
             "newLine": true
         },
         "apiKeys": {
-            "sm": 12,
             "newLine": true,
             "type": "table",
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
             "items": [
                 {
                     "type": "text",
@@ -48,21 +72,36 @@
                 }
             ]
         },
+        "_devicesHeader": {
+            "newLine": true,
+            "type": "header",
+            "text": "EcoFlow devices configuration",
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
+            "size": 3
+        },
         "_introTableDevices": {
             "type": "staticText",
             "text": "Please add one entry for each of your EcoFlow devices.",
             "newLine": true
         },
         "devices": {
-            "sm": 12,
             "newLine": true,
             "type": "table",
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12,
             "items": [
                 {
                     "type": "text",
                     "attr": "serialNumber",
                     "width": "50%",
-                    "title": "Serial number",
+                    "title": "Device serial number",
                     "filter": false,
                     "sort": false,
                     "default": ""
@@ -90,7 +129,7 @@
                 {
                     "type": "checkbox",
                     "attr": "doNotUpdateOffline",
-                    "title": "Do not update the states if device is offline",
+                    "title": "Do not update states if device is offline",
                     "width": "10%",
                     "filter": false,
                     "sort": false,
