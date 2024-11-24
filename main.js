@@ -12,6 +12,7 @@ const utils = require('@iobroker/adapter-core');
 // const fs = require("fs");
 const axios = require('axios');
 const crypto = require('crypto');
+const cron = require('node-cron');
 
 const stringEcoflowApiUrl = 'https://api-e.ecoflow.com/iot-open/sign/';
 const arrayQuotaKeyNotFound = [];
@@ -48,9 +49,11 @@ class EcoflowCatshape extends utils.Adapter {
         
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        this.log.debug('typeof this.config.cumulateDailyResetTime: ' + typeof this.config.cumulateDailyResetTime);
-        this.log.debug('this.config.cumulateDailyResetTime: ' + this.config.cumulateDailyResetTime);
-        this.log.debug('typeof this.config.scheduleRules[0]: ' + typeof this.config.scheduleRules[0]);
+        //const stringSched = '3,9,15,21,27,33,39,45,51,57 * * * * *';
+        if (!cron.validate(this.config.cronSchedule)) {
+            this.log.error('Config "node-cron schedule" is invalid: ' + this.config.cronSchedule);
+            return;
+        }
         
         let numA = 0;
         let numArrayLen = 0;
@@ -62,12 +65,20 @@ class EcoflowCatshape extends utils.Adapter {
         this.objCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
         
         numArrayLen = this.config.apiKeys.length;
+        if (numArrayLen < 1) {
+            this.log.error('Config "API keys" at least one entry is needed');
+            return;
+        }
         for (numA = 1; numA <= numArrayLen; numA = numA + 1) {
             this.objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
         }
         this.log.debug('this.objAllApiKeys: ' + JSON.stringify(this.objAllApiKeys));
         
         numArrayLen = this.config.devices.length;
+        if (numArrayLen < 1) {
+            this.log.error('Config "EcoFlow devices" at least one entry is needed');
+            return;
+        }
         for (numA = 0; numA < numArrayLen; numA = numA + 1) {
             objDevice = this.config.devices[numA];
             //objDevice.apiKey = this.objAllApiKeys[objDevice.apiKey];
@@ -195,20 +206,6 @@ class EcoflowCatshape extends utils.Adapter {
         }
         
         
-        /*
-            setState examples
-            you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-        */
-        // the variable testVariable is set to true as command (ack=false)
-        //await this.setStateAsync('testVariable', true);
-        
-        // same thing, but the value is flagged "ack"
-        // ack should be always set to true if the value is received from or acknowledged from the target system
-        //await this.setStateAsync('testVariable', { val: true, ack: true });
-        
-        // same thing, but the state is deleted after 30s (getState will return null afterwards)
-        //await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-        
         // examples for the checkPassword/checkGroup functions
         //let result = await this.checkPasswordAsync('admin', 'iobroker');
         //this.log.info('check user admin pw iobroker: ' + result);
@@ -216,13 +213,21 @@ class EcoflowCatshape extends utils.Adapter {
         //result = await this.checkGroupAsync('admin', 'admin');
         //this.log.info('check group user admin group admin: ' + result);
         
+        const cronSchedule = cron.schedule(
+            this.config.cronSchedule, () => {
+                this.requestAllDataAndUpdateStates(this.objAllApiKeys);
+            }
+        );
+        /*
         requestAllDataInterval = this.setInterval(
             async () => {
                 await this.requestAllDataAndUpdateStates(this.objAllApiKeys);
             }
             , 6000
         );
+        */
     }
+    
     
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
@@ -232,12 +237,17 @@ class EcoflowCatshape extends utils.Adapter {
         try {
             // Here you must clear all timeouts or intervals that may still be active
             // this.clearTimeout(timeout1);
-            // this.clearTimeout(timeout2);
             // ...
             // this.clearInterval(interval1);
+            // ...
             if (requestAllDataInterval) {
                 this.clearInterval(requestAllDataInterval);
                 this.log.debug('this.clearInterval(requestAllDataInterval)');
+            }
+            
+            if(cronSchedule) {
+                cronSchedule.stop();
+                this.log.debug('cronSchedule.stop()');
             }
             
             callback();
@@ -245,6 +255,7 @@ class EcoflowCatshape extends utils.Adapter {
             callback();
         }
     }
+    
     
     // If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
     // You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
@@ -599,7 +610,7 @@ class EcoflowCatshape extends utils.Adapter {
     
     async ecoflowRequest(objConfig) {
         
-        this.log.debug('Request to Ecoflow');
+        this.log.debug('Request to Ecoflow: objConfig: ' + JSON.stringify(objConfig));
         try {
             const response = await axios(objConfig);
             
