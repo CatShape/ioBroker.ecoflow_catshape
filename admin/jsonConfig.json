@@ -85,7 +85,7 @@
                     "title": "API key to use",
                     "filter": false,
                     "sort": false,
-                    "default": 0
+                    "default": 1
                 },
                 {
                     "type": "checkbox",
