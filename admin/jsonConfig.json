@@ -2,34 +2,21 @@
     "i18n": false,
     "type": "panel",
     "items": {
-        "cumulateDailyResetTime": {
+        "cronSchedule": {
             "type": "text",
-            "label": "cumulateDailyResetTime",
+            "label": "node-cron schedule for getting data from EcoFlow",
             "newLine": true,
             "sm": 12,
             "md": 6,
             "lg": 4
         },
-        "_introTableScheduleRules": {
-            "type": "staticText",
-            "text": "Please add one entry for each of the desired schedule rules.",
-            "newLine": true
-        },
-        "scheduleRules": {
-            "sm": 12,
+        "cumulateDailyResetTime": {
+            "type": "text",
+            "label": "Reset time for cumulate daily states (state gets set to 0)",
             "newLine": true,
-            "type": "table",
-            "items": [
-                {
-                    "type": "text",
-                    "attr": "scheduleRule",
-                    "width": "100%",
-                    "title": "Schedule rule",
-                    "filter": false,
-                    "sort": false,
-                    "default": "{\"second\": [3, 15, 27, 39, 51]}"
-                }
-            ]
+            "sm": 12,
+            "md": 6,
+            "lg": 4
         },
         "_introTableApiKeys": {
             "type": "staticText",
@@ -63,7 +50,7 @@
         },
         "_introTableDevices": {
             "type": "staticText",
-            "text": "Please add one entry for each of your Ecoflow devices.",
+            "text": "Please add one entry for each of your EcoFlow devices.",
             "newLine": true
         },
         "devices": {
@@ -78,7 +65,7 @@
                     "title": "Serial number",
                     "filter": false,
                     "sort": false,
-                    "default": "xxxxx"
+                    "default": ""
                 },
                 {
                     "type": "select",
