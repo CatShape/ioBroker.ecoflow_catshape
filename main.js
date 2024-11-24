@@ -10,8 +10,13 @@ const utils = require('@iobroker/adapter-core');
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
+const axios = require('axios');
+const crypto = require('crypto');
 
 const stringEcoflowApiUrl = 'https://api-e.ecoflow.com/iot-open/sign/';
+const arrayQuotaKeyNotFound = [];
+
+let requestAllDataInterval = null;
 
 
 class EcoflowCatshape extends utils.Adapter {
@@ -43,27 +48,33 @@ class EcoflowCatshape extends utils.Adapter {
         
         // The adapters config (in the instance object everything under the attribute "native") is accessible via
         // this.config:
-        //this.log.info('config cumulateDailyResetTime: ' + typeof this.config.cumulateDailyResetTime);
-        //this.log.info('config scheduleRules: ' + typeof this.config.scheduleRules[0]);
+        this.log.debug('typeof this.config.cumulateDailyResetTime: ' + typeof this.config.cumulateDailyResetTime);
+        this.log.debug('this.config.cumulateDailyResetTime: ' + this.config.cumulateDailyResetTime);
+        this.log.debug('typeof this.config.scheduleRules[0]: ' + typeof this.config.scheduleRules[0]);
         
         let numA = 0;
-        let numArrayLen = this.config.apiKeys;
+        let numArrayLen = 0;
         let objDevice = {};
         let stringKey = '';
+        let stringId = '';
+        let objStateObj = {};
         
         this.objCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
         
+        numArrayLen = this.config.apiKeys.length;
         for (numA = 1; numA <= numArrayLen; numA = numA + 1) {
             this.objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
         }
-        this.log.info('this.objAllApiKeys: ' + JSON.stringify(this.objAllApiKeys));
+        this.log.debug('this.objAllApiKeys: ' + JSON.stringify(this.objAllApiKeys));
         
+        numArrayLen = this.config.devices.length;
         for (numA = 0; numA < numArrayLen; numA = numA + 1) {
             objDevice = this.config.devices[numA];
             //objDevice.apiKey = this.objAllApiKeys[objDevice.apiKey];
             this.objDevices[objDevice.serialNumber] = objDevice;
         }
-        this.log.info('this.objDevices: ' + JSON.stringify(this.objDevices));
+        this.log.debug('this.objDevices: ' + JSON.stringify(this.objDevices));
+        //return;
         
         
         /*
@@ -73,9 +84,9 @@ class EcoflowCatshape extends utils.Adapter {
         */
         
         for (stringKey in this.objDevices) {
-            this.log.info('stringKey: ' + stringKey);
+            //this.log.debug('stringKey: ' + stringKey);
             objDevice = this.objDevices[stringKey];
-            this.log.info('objDevice: ' + JSON.stringify(objDevice));
+            //this.log.debug('objDevice: ' + JSON.stringify(objDevice));
             
             await this.setObjectNotExistsAsync(
                 objDevice.serialNumber, {
@@ -171,6 +182,19 @@ class EcoflowCatshape extends utils.Adapter {
         // Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
         // this.subscribeStates('*');
         
+        const objA = await this.getStatesAsync('*');
+        for (stringId in objA) {
+            //this.log.debug('stringId: ' + stringId);
+            objStateObj = await this.getObjectAsync(stringId);
+            
+            if (objStateObj.native.hasOwnProperty('ecoflowApi')) {
+                if (objStateObj.native.ecoflowApi.hasOwnProperty('setValueData')) {
+                    this.subscribeStates(stringId);
+                }
+            }
+        }
+        
+        
         /*
             setState examples
             you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
@@ -186,11 +210,18 @@ class EcoflowCatshape extends utils.Adapter {
         //await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
         
         // examples for the checkPassword/checkGroup functions
-        let result = await this.checkPasswordAsync('admin', 'iobroker');
+        //let result = await this.checkPasswordAsync('admin', 'iobroker');
         //this.log.info('check user admin pw iobroker: ' + result);
         
-        result = await this.checkGroupAsync('admin', 'admin');
+        //result = await this.checkGroupAsync('admin', 'admin');
         //this.log.info('check group user admin group admin: ' + result);
+        
+        requestAllDataInterval = this.setInterval(
+            async () => {
+                await this.requestAllDataAndUpdateStates(this.objAllApiKeys);
+            }
+            , 6000
+        );
     }
     
     /**
@@ -200,11 +231,15 @@ class EcoflowCatshape extends utils.Adapter {
     onUnload(callback) {
         try {
             // Here you must clear all timeouts or intervals that may still be active
-            // clearTimeout(timeout1);
-            // clearTimeout(timeout2);
+            // this.clearTimeout(timeout1);
+            // this.clearTimeout(timeout2);
             // ...
-            // clearInterval(interval1);
-        
+            // this.clearInterval(interval1);
+            if (requestAllDataInterval) {
+                this.clearInterval(requestAllDataInterval);
+                this.log.debug('this.clearInterval(requestAllDataInterval)');
+            }
+            
             callback();
         } catch (e) {
             callback();
@@ -236,10 +271,22 @@ class EcoflowCatshape extends utils.Adapter {
     onStateChange(id, state) {
         if (state) {
             // The state was changed
-            this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            /*
+            on({id: arrayOfTriggerIds, change: 'ne', ack: false}
+                , function(objA) {
+                    sendDeviceState(objA);
+                }
+            );
+            */
+            this.log.debug('id: ' + id);
+            this.log.debug('state: ' + JSON.stringify(state));
+            if (!state.ack) {
+                this.sendDeviceState(id, state);
+            }
+            this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
         } else {
             // The state was deleted
-            this.log.info(`state ${id} deleted`);
+            this.log.debug(`state ${id} deleted`);
         }
     }
     
@@ -261,6 +308,319 @@ class EcoflowCatshape extends utils.Adapter {
     //     }
     // }
     
+    
+    
+    async requestAllDataAndUpdateStates(objApiKeys) {
+        
+        let stringKey = '';
+        let objApiKey = {};
+        let objA = {};
+        let objDevices = {};
+        
+        for (stringKey in objApiKeys) {
+            objApiKey = objApiKeys[stringKey];
+            if (!objectIsEmpty(objApiKey)) {
+                objA = await this.getDevices(objApiKey);
+                if (!objectIsEmpty(objA)) {
+                    objDevices = mergeArrayOfObjectsIntoObject([objDevices, objA]);
+                }
+            }
+        }
+        if (!objectIsEmpty(objDevices)) {
+            for (stringKey in objDevices) {
+                if (!objectIsEmpty(objDevices[stringKey])) {
+                    objA = objDevices[stringKey];
+                    this.log.debug('objA: ' + JSON.stringify(objA));
+                    if (this.objDevices[objA.sn].doNotUpdateOffline && (objA.online != 1)) {
+                        this.updateDeviceOnlineState(objA);
+                    } else {
+                        this.requestDeviceDataAndUpdateStates(objA);
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    async getDevices(objApiKey) {
+        
+        let objConfig = {};
+        let numLen = 0;
+        let indexA = 0;
+        let objA = {};
+        let objRet = {};
+        
+        objConfig.url = stringEcoflowApiUrl + 'device/list';
+        objConfig.method = 'get';
+        
+        const objHeaders = getHeaders(objApiKey);
+        if (!objectIsEmpty(objHeaders)) {
+            objConfig.headers = objHeaders;
+        }
+        
+        objA = await this.ecoflowRequest(objConfig);
+        if (!objectIsEmpty(objA)) {
+            const arrayData = objA.data;
+            this.log.debug('arrayData: ' + JSON.stringify(arrayData));
+            if (arrayData) {
+                numLen = arrayData.length;
+                for (indexA = 0; indexA < numLen; indexA = indexA + 1) {
+                    if (!objectIsEmpty(arrayData[indexA])) {
+                        objA = arrayData[indexA];
+                        if (this.objDevices.hasOwnProperty(objA.sn)) {
+                            //this.log.debug('objA: ' + JSON.stringify(objA));
+                            objRet[objA.sn] = objA;
+                        }
+                    }
+                }
+            }
+        }
+        return objRet;
+    }
+    
+    
+    async requestDeviceDataAndUpdateStates(objDevice) {
+        
+        let objConfig = {};
+        let stringA = '';
+        let objData = {};
+        
+        objConfig.url = stringEcoflowApiUrl + 'device/quota/all?sn=' + objDevice.sn;
+        objConfig.method = 'get';
+        
+        const objConfigData = {
+            sn: objDevice.sn
+        };
+        if (!objectIsEmpty(objConfigData)) {
+            objConfig.data = objConfigData;
+        }
+        stringA = this.objDevices[objDevice.sn].apiKey;
+        const objHeaders = getHeaders(this.objAllApiKeys[stringA], objConfigData);
+        if (!objectIsEmpty(objHeaders)) {
+            objConfig.headers = objHeaders;
+        }
+        
+        objData = await this.ecoflowRequest(objConfig);
+        if (!objectIsEmpty(objData)) {
+            objData = objData.data;
+            if (objData) {
+                if (!objectIsEmpty(objData)) {
+                    //this.log.info('objData: ' + JSON.stringify(objData));
+                    objData = mergeArrayOfObjectsIntoObject([objDevice, objData]);
+                    this.updateDeviceStates(objData);
+                }
+            }
+        }
+    }
+    
+    
+    async sendDeviceState(stringId, objState) {
+        
+        const arrayT = stringId.split('.');
+        const stringSn = arrayT[2];
+        this.log.debug('stringSn: ' + stringSn);
+        if (!this.objDevices.hasOwnProperty(stringSn)) {
+            this.log.debug('this.objDevices.hasOwnProperty(' + stringSn + '): false');
+            return;
+        }
+        if (!(await this.getStateAsync(stringSn + '.online')).val) {
+            return;
+        }
+        const objEcoflowApi = (await this.getObjectAsync(stringId)).native.ecoflowApi;
+        
+        let anyValue;
+        let stringA = '';
+        let numberA = 0;
+        let numberLen = 0;
+        let objConfig = {};
+        let objConfigData = objEcoflowApi.setValueData;
+        let arrayA = [];
+        let objA = {};
+        let indexA = 0;
+        
+        anyValue = objState.val;
+        if (objEcoflowApi.hasOwnProperty('valueMap')) {
+            for (stringA in objEcoflowApi.valueMap) {
+                if (objEcoflowApi.valueMap[stringA] == anyValue) {
+                    anyValue = stringA;
+                    break;
+                }
+            }
+        } else if (objEcoflowApi.hasOwnProperty('valueFactor')) {
+            anyValue = (anyValue / objEcoflowApi.valueFactor).toFixed(4);
+            numberA = 0;
+            numberLen = anyValue.length;
+            while (anyValue.endsWith('0', numberLen - numberA)) {
+                numberA = numberA + 1;
+            }
+            anyValue = anyValue.substring(0, numberLen - numberA)
+        }
+        this.log.debug(stringSn + ', ' + objEcoflowApi.quotaValueKey + ': ' + String(anyValue));
+        
+        objConfig.url = stringEcoflowApiUrl + 'device/quota';
+        objConfig.method = 'put'; // put post
+        
+        if (objConfigData.hasOwnProperty('sn')) {
+            objConfigData.sn = stringSn;
+        }
+        stringA = objEcoflowApi.setValueKey;
+        arrayA = stringA.split('.');
+        numberLen = arrayA.length - 1;
+        objA = objConfigData;
+        for (indexA = 0; indexA < numberLen; indexA = indexA + 1) {
+            objA = objA[arrayA[indexA]];
+        }
+        objA[arrayA[numberLen]] = anyValue;
+        
+        objConfig.data = objConfigData;
+        stringA = this.objDevices[stringSn].apiKey;
+        const objHeaders = getHeaders(this.objAllApiKeys[stringA], objConfigData);
+        if (!objectIsEmpty(objHeaders)) {
+            objConfig.headers = objHeaders;
+        }
+        this.ecoflowRequest(objConfig);
+    }
+    
+    
+    async updateDeviceOnlineState(objData) {
+        
+        const stringFullId = objData.sn + '.online';
+        const objStateObj = await this.getObjectAsync(stringFullId);
+        let anyValue = objData.online;
+        
+        if (objStateObj.native.hasOwnProperty('ecoflowApi')) {
+            if (objStateObj.native.ecoflowApi.hasOwnProperty('valueMap')) {
+                if (objStateObj.native.ecoflowApi.valueMap.hasOwnProperty(String(anyValue))) {
+                    anyValue = objStateObj.native.ecoflowApi.valueMap[String(anyValue)];
+                }
+            }
+        }
+        this.log.debug('this.setStateChanged(' + stringFullId + ', ' + String(anyValue) + ', true)');
+        this.setStateChanged(stringFullId, anyValue, true);
+    }
+    
+    
+    async updateDeviceStates(objData) {
+        
+        const stringDeviceId = objData.sn;
+        const boolOnline = (await this.getStateAsync(stringDeviceId + '.online')).val;
+        let stringIdA = stringDeviceId + '.quota';
+        let objA = {};
+        let stringId = '';
+        let objStateObj = {};
+        let anyValue;
+        let stringA = '';
+        let numberA = 0;
+        
+        let boolA = false;
+        if (this.objDevices[objData.sn].updateQuotaState) {
+            boolA = true;
+        } else if ((await this.getStateAsync(stringIdA)).val == '') {
+            boolA = true;
+        }
+        if (boolA) {
+            this.setStateChanged(stringIdA, JSON.stringify(objData), true);
+        }
+        
+        objA = await this.getStatesAsync(stringDeviceId + '.*');
+        for (stringId in objA) {
+            objStateObj = await this.getObjectAsync(stringId);
+            if (objStateObj.native.hasOwnProperty('ecoflowApi')) {
+                if (objStateObj.native.ecoflowApi.hasOwnProperty('quotaValueKey')) {
+                    if (objData.hasOwnProperty(objStateObj.native.ecoflowApi.quotaValueKey)) {
+                        anyValue = this.getValueForState(objData, objStateObj);
+                        if ((objData.online == 1) && objStateObj.native.hasOwnProperty('cumulateDailyByTimeId')) {
+                            this.setCumulateDailyByTime(stringDeviceId + '.' + objStateObj.native.cumulateDailyByTimeId, anyValue, (await this.getStateAsync(stringId)).val, boolOnline);
+                        }
+                        this.setStateChanged(stringId, anyValue, true);
+                    } else if (!arrayQuotaKeyNotFound.includes(stringId)) {
+                        stringA = stringId + ': native.ecoflowApi.quotaValueKey=' + objStateObj.native.ecoflowApi.quotaValueKey + ' not found in quota-object';
+                        this.log.warn(stringA);
+                        arrayQuotaKeyNotFound.push(stringId);
+                    }
+                }
+            }
+        }
+        stringIdA = stringDeviceId + '.dsgVoltageCurve';
+        if (await this.objectExists(stringIdA)) {
+            objA = JSON.parse((await this.getStateAsync(stringIdA)).val);
+            const mapA = new Map();
+            for (stringA in objA) {
+                mapA.set(objA[stringA], {'soc': Number.parseFloat(stringA)});
+            }
+            const objCurve = await this.getObjectAsync(stringIdA);
+            objA = await this.getObjectAsync(stringDeviceId + '.' + objCurve.native.volId);
+            numberA = this.getValueForState(objData, objA);
+            objA = await this.getObjectAsync(stringDeviceId + '.' + objCurve.native.ampId);
+            numberA = numberA - this.getValueForState(objData, objA) * objCurve.native.ampCorrectionFactor;
+            numberA = interpolateMapLinear(mapA, numberA, 'soc');
+            numberA = Math.round(numberA * 10) / 10;
+            this.setStateChanged(stringDeviceId + '.' + objCurve.native.toStateId, numberA, true);
+        }
+    }
+    
+    
+    getValueForState(objData, objStateObj) {
+        
+        let anyValue = objData[objStateObj.native.ecoflowApi.quotaValueKey];
+        if (objStateObj.native.ecoflowApi.hasOwnProperty('valueMap')) {
+            if (objStateObj.native.ecoflowApi.valueMap.hasOwnProperty(String(anyValue))) {
+                anyValue = objStateObj.native.ecoflowApi.valueMap[String(anyValue)];
+            }
+        } else if (objStateObj.native.ecoflowApi.hasOwnProperty('valueFactor')) {
+            anyValue = Number.parseFloat((anyValue * objStateObj.native.ecoflowApi.valueFactor).toFixed(4));
+        }
+        return anyValue;
+    }
+    
+    
+    async setCumulateDailyByTime(stringId, numberNew, numberOld, boolOnline) {
+        
+        const dateNow = new Date();
+        const numberNowMs = dateNow.getTime();
+        const objState = await this.getStateAsync(stringId);
+        let numberTs = objState.ts;
+        const dateTs = new Date(numberTs);
+        let numberVal = objState.val;
+        
+        const numberBod = (new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate()
+            , this.objCumulateDailyResetTime.hour, this.objCumulateDailyResetTime.minute, this.objCumulateDailyResetTime.second)).getTime();
+        if ((numberTs < numberBod) && (numberNowMs >= numberBod)) {
+            numberOld = numberOld + (numberBod - numberTs) * ((numberNew - numberOld) / (numberNowMs - numberTs));
+            numberVal = 0;
+            numberTs = numberBod;
+        }
+        if (boolOnline) {
+            numberVal = numberVal + (numberOld + numberNew) / 2 * (numberNowMs - numberTs) / 3600000;
+        }
+        this.setState(stringId, {val: numberVal, ack: true, ts: numberNowMs});
+    }
+    
+    
+    async ecoflowRequest(objConfig) {
+        
+        this.log.debug('Request to Ecoflow');
+        try {
+            const response = await axios(objConfig);
+            
+            if (response.status == 200) {
+                if (response.data.code == 0) {
+                    this.log.debug('response.data: ' + JSON.stringify(response.data));
+                    return response.data;
+                } else {
+                    this.log.warn('response.data.code: ' + response.data.code.toString() + ' (' + response.data.message + ' )');
+                }
+            } else {
+                this.log.warn('response.status: ' + response.status.toString() + ' (' + response.statusText + ' )');
+            }
+            this.log.warn('Request failed: url: ' + objConfig.url + ', method: ' + objConfig.method + ', data: ' + JSON.stringify(objConfig.data));
+            return {};
+       } catch (error) {
+            this.log.error('Error');
+            //this.log.error(error);
+            throw error;
+        }
+    }
     
 }
 
@@ -310,9 +670,9 @@ function getSignature(objApiKey, objParams, stringNonce, stringTimestamp) {
     }
     arrayA = arrayA.concat(['accessKey=' + objApiKey.accessKey, 'nonce=' + stringNonce, 'timestamp=' + stringTimestamp]);
     stringA = arrayA.join('&');
-    //log('stringA: ' + stringA, 'info');
+    //log('stringA: ' + stringA, 'debug');
     stringA = crypto.createHmac('sha256', objApiKey.secretKey).update(stringA).digest('hex');
-    //log('sign: ' + stringA, 'info');
+    //log('sign: ' + stringA, 'debug');
     return stringA;
 }
 
