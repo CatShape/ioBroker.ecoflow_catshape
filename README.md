@@ -8,21 +8,29 @@
 
 [![NPM](https://nodei.co/npm/iobroker.ecoflow_catshape.png?downloads=true)](https://nodei.co/npm/iobroker.ecoflow_catshape/)
 
-**Tests:** ![Test and Release](https://github.com/CatShape/ioBroker.ecoflow_catshape/workflows/Test%20and%20Release/badge.svg)
-
 ## ecoflow_catshape adapter for ioBroker
 
-ioBroker adapter based on the official EcoFlow HTTP-API ([https://developer-eu.ecoflow.com])
-Provides communication with products from EcoFlow ([https://www.ecoflow.com]) within the ioBroker software ([https://www.iobroker.net]).
+ioBroker adapter based on the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com). 
+
+Provides communication with products from EcoFlow (https://www.ecoflow.com) within the ioBroker software (https://www.iobroker.net).
 
 ## WARNING
 
-This adapter uses the official EcoFlow HTTP-API ([https://developer-eu.ecoflow.com]).
-The developer of this adapter has no .
+This adapter uses the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com) and therefore depends on the maintenance of said API by EcoFlow.
 
+Use at own risk.
 
 The adapter is based on:
 * https://developer-eu.ecoflow.com/us/document/introduction
+
+## Configuration
+
+### node-cron schedule for getting data from EcoFlow
+Examples: ``` */10 * * * * * ``` (every 10 seconds). For more information please visit: https://github.com/node-cron/node-cron/blob/master/README.md
+    
+### Reset time for cumulate daily states (state gets set to 0 at this time)
+Example: ``` {"hour": 3, "minute": 1, "second": 3} ```
+
 
 ## Changelog
 
