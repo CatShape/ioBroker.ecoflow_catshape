@@ -96,7 +96,7 @@
         "apiKeys.apiSecretKey"
     ],
     "native": {
-        "cronSchedule": "/10 * * * * *",
+        "cronSchedule": "*/10 * * * * *",
         "cumulateDailyResetTime": "{\"hour\": 0, \"minute\": 0, \"second\": 0}",
         "apiKeys": [],
         "devices": []
