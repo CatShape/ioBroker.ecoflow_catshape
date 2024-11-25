@@ -212,7 +212,7 @@ For read-write states the properties "setValueKey" and "setValueData" are necces
 <br/>could be replaced by 
 <br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.temperatureSensors.pv2Temperature"
 
-<b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro PowerStream and RiverPro.</b>
+<b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro, PowerStream and RiverPro.</b>
 
 ## Changelog
 
