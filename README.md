@@ -202,6 +202,7 @@ The important part is the property "ecoflowApi" within "native":
 <b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
 <br/>  Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
 <br/>  Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
+<br/>  You don't have to fill in the value for "sn". This serves only as a template which will be used at runtime.
 
 For read-write states the properties "setValueKey" and "setValueData" are neccessary.
 <br/>For read-only states they are not needed.
