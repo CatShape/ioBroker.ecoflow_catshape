@@ -1,0 +1,1975 @@
+{
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX": {
+    "type": "device",
+    "common": {
+      "name": "Delta Pro test",
+      "desc": "DELTA Pro"
+    },
+    "native": {},
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX",
+    "acl": {
+      "object": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458099154
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster": {
+    "type": "channel",
+    "common": {
+      "name": "bmsMaster",
+      "desc": "bmsMaster"
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster",
+    "acl": {
+      "object": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458099430
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.amp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "Battery current",
+      "desc": "Battery current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.amp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.amp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458099714,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.cycles": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Battery cycles",
+      "desc": "Number of battery cycles",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.cycles"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.cycles",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458100554,
+    "val": 41,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.fullCap": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "Ah",
+      "name": "Full capacity",
+      "desc": "Full capacity",
+      "read": true,
+      "write": false,
+      "def": 15
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.fullCap",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.fullCap",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458100706,
+    "val": 76,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.remainCap": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "Ah",
+      "name": "Remaining capacity",
+      "desc": "Remaining capacity",
+      "read": true,
+      "write": false,
+      "def": 15
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.remainCap",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.remainCap",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458101235,
+    "val": 19.948,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.soc": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Battery state of charge",
+      "desc": "Battery state of charge",
+      "read": true,
+      "write": false,
+      "def": 60
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.soc"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.soc",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458101358,
+    "val": 26,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.temp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "°C",
+      "name": "Temperature",
+      "desc": "Temperature",
+      "read": true,
+      "write": false,
+      "def": 20
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.temp"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.temp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458101706,
+    "val": 19,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.vol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "Battery voltage",
+      "desc": "Battery voltage",
+      "read": true,
+      "write": false,
+      "def": 30
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "bmsMaster.vol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.bmsMaster.vol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458102198,
+    "val": 49.23,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems": {
+    "type": "channel",
+    "common": {
+      "name": "ems",
+      "desc": "ems"
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems",
+    "acl": {
+      "object": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458102314
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.fanLevel": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Fan Level",
+      "desc": "Fan Level (speed 0-?)",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "ems.fanLevel"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.fanLevel",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458102394,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.lcdShowSoc": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Displayed battery state of charge",
+      "desc": "Displayed battery state of charge",
+      "read": true,
+      "write": false,
+      "def": 60
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "ems.lcdShowSoc"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.lcdShowSoc",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458102586,
+    "val": 26,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.maxChargeSoc": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Maximum battery state of charge",
+      "desc": "Maximum battery state of charge",
+      "read": true,
+      "write": true,
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "def": 100
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "ems.maxChargeSoc",
+        "setValueKey": "params.maxChgSoc",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 49,
+            "maxChgSoc": 100
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.maxChargeSoc",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458103115,
+    "val": 96,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.minDsgSoc": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Minimum battery state of charge",
+      "desc": "Minimum battery state of charge",
+      "read": true,
+      "write": true,
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "ems.minDsgSoc",
+        "setValueKey": "params.minDsgSoc",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 51,
+            "minDsgSoc": 0
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.ems.minDsgSoc",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458103291,
+    "val": 4,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv": {
+    "type": "channel",
+    "common": {
+      "name": "inv",
+      "desc": "inv"
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv",
+    "acl": {
+      "object": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458103426
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acDipSwitch": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "AC fast/slow charging dip switch",
+      "desc": "AC fast/slow charging physical dip switch",
+      "read": true,
+      "write": false,
+      "states": {
+        "0": "Unknown",
+        "1": "Fast charge (X-Stream)",
+        "2": "Slow charge"
+      },
+      "def": 2
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.acDipSwitch"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acDipSwitch",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458103475,
+    "val": 2,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acInAmp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "Inverter input current",
+      "desc": "Inverter input current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.acInAmp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acInAmp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458104106,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acInFreq": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "Hz",
+      "name": "Inverter input frequency",
+      "desc": "Inverter input frequency",
+      "read": true,
+      "write": false,
+      "def": 50
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.acInFreq",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acInFreq",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458104234,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acInVol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "Inverter input voltage",
+      "desc": "Inverter input voltage",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.acInVol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.acInVol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458104358,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.cfgAcEnabled": {
+    "type": "state",
+    "common": {
+      "type": "boolean",
+      "name": "AC output enabled",
+      "desc": "AC output enabled",
+      "read": true,
+      "write": true,
+      "def": false
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.cfgAcEnabled",
+        "valueMap": {
+          "0": false,
+          "1": true
+        },
+        "setValueKey": "params.enabled",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 66,
+            "enabled": "0"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.cfgAcEnabled",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "val": false,
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458104475,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.cfgAcXboost": {
+    "type": "state",
+    "common": {
+      "type": "boolean",
+      "name": "X-Boost enabled",
+      "desc": "X-Boost enabled",
+      "read": true,
+      "write": true,
+      "def": false
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.cfgAcXboost",
+        "valueMap": {
+          "0": false,
+          "1": true
+        },
+        "setValueKey": "params.xboost",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 66,
+            "xboost": "0"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.cfgAcXboost",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "val": false,
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458105034,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.cfgSlowChgWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Maximum charging power for AC slow charging",
+      "desc": "Maximum charging power for AC slow charging",
+      "read": true,
+      "write": true,
+      "min": 200,
+      "max": 2900,
+      "step": 100,
+      "def": 400
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.cfgSlowChgWatts",
+        "setValueKey": "params.slowChgPower",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 69,
+            "slowChgPower": "0"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.cfgSlowChgWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458105155,
+    "val": 300,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.dcInAmp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "DC input current",
+      "desc": "DC input current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.dcInAmp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.dcInAmp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458105265,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.dcInTemp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "°C",
+      "name": "DC in temperature",
+      "desc": "DC in temperature",
+      "read": true,
+      "write": false,
+      "def": 20
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.dcInTemp"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.dcInTemp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458105754,
+    "val": 20,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.dcInVol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "DC input voltage",
+      "desc": "DC input voltage",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.dcInVol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.dcInVol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458105867,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.fanState": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Fan state",
+      "desc": "Fan state (speed 0-3)",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.fanState"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.fanState",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458105986,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.inputWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Inverter input power",
+      "desc": "Inverter input power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.inputWatts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.inputWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458106106,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.invOutAmp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "Inverter output current",
+      "desc": "Inverter output current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.invOutAmp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.invOutAmp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458106250,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.invOutFreq": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "Hz",
+      "name": "Inverter output frequency",
+      "desc": "Inverter output frequency",
+      "read": true,
+      "write": false,
+      "def": 50
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.invOutFreq",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.invOutFreq",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458106674,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.invOutVol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "Inverter output voltage",
+      "desc": "Inverter output voltage",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.invOutVol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.invOutVol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458106786,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.outTemp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "°C",
+      "name": "Out temperature",
+      "desc": "Out temperature",
+      "read": true,
+      "write": false,
+      "def": 20
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.outTemp"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.outTemp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458106914,
+    "val": 20,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.outputWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Inverter output power",
+      "desc": "Inverter output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "inv.outputWatts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.inv.outputWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458107066,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt": {
+    "type": "channel",
+    "common": {
+      "name": "mppt",
+      "desc": "mppt"
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt",
+    "acl": {
+      "object": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458107186
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carOutAmp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "Car charging output current",
+      "desc": "Car charging output current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.carOutAmp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carOutAmp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458107634,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carOutVol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "Car charging output voltage",
+      "desc": "Car charging output voltage",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.carOutVol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carOutVol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458107874,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carOutWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Car charging output power",
+      "desc": "Car charging output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.carOutWatts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carOutWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458108514,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carState": {
+    "type": "state",
+    "common": {
+      "type": "boolean",
+      "name": "DC output enabled",
+      "desc": "DC output enabled",
+      "read": true,
+      "write": true,
+      "def": false
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.carState",
+        "valueMap": {
+          "0": false,
+          "1": true
+        },
+        "setValueKey": "params.enabled",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 81,
+            "enabled": "0"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.carState",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "val": false,
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458108720,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.cfgChgType": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Configured charging type",
+      "desc": "Configured charging type",
+      "read": true,
+      "write": true,
+      "states": {
+        "0": "Automatic",
+        "1": "MPPT",
+        "2": "Adapter"
+      },
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.cfgChgType",
+        "setValueKey": "params.chgType",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 82,
+            "chgType": "0"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.cfgChgType",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458108874,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.cfgDcChgCurrent": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "Maximaum charging current",
+      "desc": "Maximaum charging current",
+      "read": true,
+      "write": true,
+      "states": {
+        "4": "4",
+        "6": "6",
+        "8": "8"
+      },
+      "def": 8
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.cfgDcChgCurrent",
+        "valueFactor": 0.001,
+        "setValueKey": "params.currMa",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 71,
+            "currMa": "8"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.cfgDcChgCurrent",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458109074,
+    "val": 8,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.chgType": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Actual charging type",
+      "desc": "Actual charging type",
+      "read": true,
+      "write": false,
+      "states": {
+        "0": "Null",
+        "1": "Adapter",
+        "2": "MPPT",
+        "3": "AC",
+        "4": "Gas",
+        "5": "Wind"
+      },
+      "def": 2
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.chgType"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.chgType",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458109794,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.inAmp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "PV input current",
+      "desc": "PV input current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.inAmp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.inAmp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458110914,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.inVol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "PV input voltage",
+      "desc": "PV input voltage",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.inVol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.inVol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458111074,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.inWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "PV input power",
+      "desc": "PV input power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.inWatts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.inWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458111226,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.outAmp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "A",
+      "name": "PV output current",
+      "desc": "PV output current",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.outAmp",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.outAmp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458111794,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.outVol": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "V",
+      "name": "PV output voltage",
+      "desc": "PV output voltage",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.outVol",
+        "valueFactor": 0.001
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.outVol",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458111906,
+    "val": 0.056,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.outWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "PV output power",
+      "desc": "PV output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.outWatts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.outWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458112026,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.xt60ChgType": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Configured charging type",
+      "desc": "Configured charging type",
+      "read": true,
+      "write": false,
+      "states": {
+        "0": "Not detected",
+        "1": "MPPT",
+        "2": "Adapter"
+      },
+      "def": 1
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "mppt.xt60ChgType"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.mppt.xt60ChgType",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458112555,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.name": {
+    "type": "state",
+    "common": {
+      "name": "Name",
+      "desc": "Device name",
+      "role": "state",
+      "type": "string",
+      "read": true,
+      "write": false,
+      "def": ""
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "deviceName"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.name",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458112666,
+    "val": "Delta Pro test",
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.online": {
+    "type": "state",
+    "common": {
+      "name": "Online",
+      "desc": "Device is online",
+      "role": "state",
+      "type": "boolean",
+      "read": true,
+      "write": false,
+      "def": false
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "online",
+        "valueMap": {
+          "0": false,
+          "1": true
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.online",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "val": false,
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458112786,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd": {
+    "type": "channel",
+    "common": {
+      "name": "pd",
+      "desc": "pd"
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd",
+    "acl": {
+      "object": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458113250
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.carState": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "CAR button state",
+      "desc": "CAR button state",
+      "read": true,
+      "write": false,
+      "states": {
+        "0": "Off",
+        "1": "On"
+      },
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.carState"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.carState",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458113314,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.carWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Car output power",
+      "desc": "Car output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.carWatts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.carWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458113553,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.energyInSum": {
+    "common": {
+      "type": "number",
+      "unit": "Wh",
+      "name": "Energy in today",
+      "desc": "Energy in today",
+      "role": "state",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "type": "state",
+    "native": {},
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.energyInSum",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458114234,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.energyOutSum": {
+    "common": {
+      "type": "number",
+      "unit": "Wh",
+      "name": "Energy out today",
+      "desc": "Energy out today",
+      "role": "state",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "type": "state",
+    "native": {},
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.energyOutSum",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458114354,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.qcUsb1Watts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "USB-A fast charge 1 output power",
+      "desc": "USB-A fast charge 1 output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.qcUsb1Watts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.qcUsb1Watts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458114470,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.qcUsb2Watts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "USB-A fast charge 2 output power",
+      "desc": "USB-A fast charge 2 output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.qcUsb2Watts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.qcUsb2Watts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458114598,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.remainTime": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "min",
+      "name": "Time remaining",
+      "desc": "Time remaining  > 0: Remaining charging time. Time remaining (min) < 0: Remaining discharging time",
+      "read": true,
+      "write": false,
+      "def": 600
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.remainTime"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.remainTime",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458115194,
+    "val": 5984,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.soc": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Battery state of charge",
+      "desc": "Battery state of charge",
+      "read": true,
+      "write": false,
+      "def": 60
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.soc"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.soc",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458115346,
+    "val": 26,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.typec1Watts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "USB-C 1 output power",
+      "desc": "USB-C 1 output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.typec1Watts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.typec1Watts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458115514,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.typec2Watts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "USB-C 2 output power",
+      "desc": "USB-C 2 output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.typec2Watts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.typec2Watts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458116594,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.usb1Watts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "USB-A 1 output power",
+      "desc": "USB-A 1 output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.usb1Watts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.usb1Watts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458116711,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.usb2Watts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "USB-A 2 output power",
+      "desc": "USB-A 2 output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.usb2Watts"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.usb2Watts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458116874,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.wattsInSum": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Total input power",
+      "desc": "Total input power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "cumulateDailyByTimeId": "pd.energyInSum",
+      "ecoflowApi": {
+        "quotaValueKey": "pd.wattsInSum"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.wattsInSum",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458117386,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.wattsOutSum": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "Total output power",
+      "desc": "Total output power",
+      "read": true,
+      "write": false,
+      "def": 0
+    },
+    "native": {
+      "cumulateDailyByTimeId": "pd.energyOutSum",
+      "ecoflowApi": {
+        "quotaValueKey": "pd.wattsOutSum"
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.wattsOutSum",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458117586,
+    "val": 0,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.productName": {
+    "type": "state",
+    "common": {
+      "type": "string",
+      "name": "Product name",
+      "desc": "Product name",
+      "role": "state",
+      "read": true,
+      "write": false
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "productName"
+      }
+    },
+    "from": "system.adapter.ecoflow_catshape.0",
+    "user": "system.user.admin",
+    "ts": 1732459563325,
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.productName",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "val": "DELTA Pro",
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.quota": {
+    "common": {
+      "name": "quota",
+      "desc": "Quota (data) from Ecoflow API",
+      "role": "state",
+      "type": "string",
+      "read": true,
+      "write": false,
+      "def": ""
+    },
+    "type": "state",
+    "native": {},
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.quota",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732458118315,
+    "val": "{\"sn\":\"DCEBZXXXXXXXXXX\",\"deviceName\":\"Delta Pro test\",\"online\":1,\"productName\":\"DELTA Pro\",\"pd.iconWifiMode\":0,\"mppt.faultCode\":0,\"ems.minDsgSoc\":4,\"pd.iconOverloadState\":0,\"pd.watthisconfig\":0,\"bmsMaster.totalDsgCap\":4294967295,\"ems.emsIsNormalFlag\":1,\"inv.cfgAcOutVoltage\":230000,\"bmsMaster.bmsHeartbeatVer\":259,\"pd.iconGasGenMode\":0,\"pd.iconBmsParallelMode\":0,\"pd.iconCoGasState\":0,\"bmsMaster.chgDsgState\":0,\"inv.invOutFreq\":0,\"inv.cfgFastChgWatts\":0,\"bmsMaster.bqSysStatReg\":128,\"mppt.inAmp\":0,\"bmsMaster.errCode\":0,\"pd.usb1Watts\":0,\"inv.cfgAcXboost\":0,\"inv.outTemp\":24,\"bmsMaster.balanceState\":0,\"bmsMaster.ecloudOcv\":65535,\"pd.chgPowerDc\":0,\"mppt.dcdc12vAmp\":0,\"pd.iconUsbState\":0,\"ems.dsgCmd\":1,\"pd.extRj45Port\":0,\"bmsMaster.remainTime\":0,\"inv.inputWatts\":0,\"bmsMaster.fullCap\":76000,\"pd.iconBtMode\":0,\"bmsMaster.maxVolDiff\":5,\"pd.typec2Temp\":22,\"pd.typec1Watts\":0,\"bmsMaster.hwEdition\":[86,48,46,48,46,48],\"pd.soc\":28,\"pd.iconFactoryState\":0,\"inv.invOutAmp\":0,\"pd.iconChgStationState\":0,\"ems.chgAmp\":130000,\"ems.bms2Online\":1,\"bmsMaster.remainCap\":21347,\"ems.paraVolMax\":50075,\"pd.iconCarState\":0,\"pd.ext3p8Port\":0,\"inv.dcInAmp\":0,\"mppt.carOutAmp\":0,\"bmsMaster.vol\":49270,\"bmsMaster.cellSeriesNum\":15,\"pd.iconWifiState\":0,\"bmsMaster.type\":1,\"inv.cfgAcEnabled\":0,\"bmsMaster.sysState\":2,\"mppt.chgType\":0,\"bmsMaster.mosState\":3,\"pd.iconBmsErrState\":0,\"mppt.cfgChgType\":0,\"pd.iconBmsErrMode\":0,\"inv.acPassByAutoEn\":0,\"pd.iconEcoState\":0,\"inv.dischargeType\":0,\"pd.carState\":0,\"pd.invUsedTime\":204784,\"pd.iconAcFreqMode\":1,\"ems.f32LcdShowSoc\":28.088158,\"mppt.carTemp\":0,\"pd.chgPowerAc\":10529,\"mppt.outWatts\":13,\"pd.beepState\":1,\"pd.iconPackHeaterState\":0,\"pd.wifiAutoRcvy\":0,\"pd.remainTime\":6404,\"bmsMaster.maxCellTemp\":19,\"pd.relayswitchcnt\":0,\"ems.maxChargeSoc\":96,\"mppt.outAmp\":2,\"pd.ext4p8Port\":0,\"mppt.chgPauseFlag\":0,\"inv.chargerType\":0,\"pd.chgSunPower\":213,\"pd.lcdBrightness\":0,\"pd.iconRechgTimeState\":0,\"bmsMaster.maxMosTemp\":20,\"pd.lcdOffSec\":10,\"pd.iconTransSwState\":0,\"pd.iconTypecMode\":0,\"inv.acInVol\":0,\"ems.openUpsFlag\":1,\"pd.sysVer\":16908436,\"pd.iconOverloadMode\":0,\"mppt.dc24vTemp\":22,\"ems.bmsWarningState\":0,\"bmsMaster.cellVol\":[3276,3279,3280,3279,3276,3279,3281,3281,3280,3279,3276,3279,3280,3278,3278],\"mppt.xt60ChgType\":0,\"bmsMaster.cellNtcNum\":4,\"pd.acautooutPause\":255,\"pd.iconFactoryMode\":0,\"ems.bms0Online\":3,\"inv.cfgAcOutFreq\":1,\"pd.iconFanMode\":0,\"inv.errCode\":0,\"mppt.dcdc12vWatts\":0,\"pd.dcOutState\":1,\"mppt.cfgDcChgCurrent\":8000,\"ems.dsgRemainTime\":6404,\"bmsMaster.openBmsIdx\":1,\"pd.mpptUsedTime\":6761,\"ems.maxAvailableNum\":1,\"bmsMaster.realSoh\":0,\"mppt.mpptTemp\":25,\"pd.iconWirelessChgMode\":0,\"pd.wifiRssi\":0,\"ems.bms1Online\":0,\"bmsMaster.productType\":14,\"ems.bmsModel\":1,\"pd.iconSolarBracketState\":0,\"kit.maxKitNum\":2,\"bmsMaster.minCellVol\":3276,\"pd.iconCoGasMode\":0,\"pd.iconChgStationMode\":0,\"pd.iconGasGenState\":0,\"pd.usb2Watts\":0,\"pd.iconRcMode\":0,\"inv.cfgSlowChgWatts\":300,\"bmsMaster.f32ShowSoc\":28.088562,\"mppt.dc24vState\":1,\"pd.wattsInSum\":0,\"pd.wifiVer\":196610,\"pd.iconLowTempMode\":0,\"inv.cfgAcWorkMode\":0,\"bmsMaster.bmsFault\":0,\"bmsMaster.diffSoc\":1,\"pd.iconInvParallelState\":0,\"pd.typec2Watts\":0,\"pd.iconTypecState\":0,\"pd.iconCarMode\":1,\"inv.outputWatts\":0,\"bmsMaster.soh\":100,\"pd.iconRcState\":0,\"bmsMaster.calendarSch\":0,\"kit.availableDataLen\":83,\"kit.productInfoDetails\":[{\"protocolAvaiFlag\":0,\"sn\":\"\",\"productType\":0,\"productDetail\":0,\"procedureState\":0,\"appVersion\":0,\"loaderVersion\":0,\"curPower\":0,\"f32Soc\":0,\"soc\":0},{\"protocolAvaiFlag\":0,\"sn\":\"\",\"productType\":0,\"productDetail\":0,\"procedureState\":0,\"appVersion\":0,\"loaderVersion\":0,\"curPower\":0,\"f32Soc\":0,\"soc\":0}],\"bmsMaster.soc\":28,\"bmsMaster.num\":0,\"pd.iconHiTempState\":0,\"mppt.inVol\":0,\"pd.iconHiTempMode\":0,\"pd.iconEcoMode\":0,\"inv.fanState\":0,\"pd.standByMode\":0,\"bmsMaster.cellTemp\":[19,19,18,19],\"ems.chgVol\":50270,\"pd.dsgPowerDc\":1033,\"bmsMaster.inputWatts\":0,\"pd.typccUsedTime\":2540,\"inv.invOutVol\":0,\"ems.chgState\":1,\"pd.carUsedTime\":10519,\"inv.acInFreq\":0,\"inv.chgPauseFlag\":0,\"pd.minAcoutSoc\":255,\"ems.fanLevel\":0,\"pd.iconBmsParallelState\":0,\"pd.wirelessWatts\":0,\"mppt.carOutVol\":0,\"pd.iconSocUpsMode\":0,\"inv.dcInVol\":0,\"pd.iconSolarBracketMode\":0,\"ems.minOpenOilEbSoc\":0,\"bmsMaster.packSn\":[48,48,48,48,48,48,48,48,48,48,48,48,48,48,48,48],\"ems.paraVolMin\":48475,\"inv.dcInTemp\":24,\"mppt.dcdc12vVol\":0,\"bmsMaster.amp\":-337,\"pd.wattsOutSum\":0,\"pd.iconWindGenMode\":0,\"bmsMaster.cycleSoh\":0,\"mppt.carOutWatts\":0,\"mppt.outVol\":489,\"pd.iconUsbMode\":0,\"inv.acDipSwitch\":2,\"bmsMaster.totalChgCap\":4294967295,\"pd.iconWindGenState\":0,\"pd.iconBtState\":0,\"bmsMaster.cellId\":2,\"bmsMaster.allErrCode\":0,\"mppt.chgState\":0,\"bmsMaster.productDetail\":2,\"bmsMaster.targetSoc\":26.702446,\"mppt.carState\":0,\"bmsMaster.designCap\":80000,\"pd.typec1Temp\":21,\"bmsMaster.allBmsFault\":0,\"pd.dsgPowerAc\":5566,\"pd.dcInUsedTime\":0,\"pd.iconLowTempState\":0,\"pd.model\":1,\"bmsMaster.actSoc\":28,\"inv.cfgStandbyMin\":120,\"ems.openBmsIdx\":1,\"pd.iconFanState\":0,\"bmsMaster.sysVer\":16843820,\"pd.hysteresisAdd\":5,\"pd.carTemp\":0,\"inv.acInAmp\":0,\"pd.acautooutConfig\":0,\"pd.qcUsb2Watts\":0,\"bmsMaster.maxCellVol\":3281,\"bmsMaster.minMosTemp\":20,\"pd.iconRechgTimeMode\":0,\"bmsMaster.cycles\":41,\"kit.protocolVersion\":1,\"pd.sysChgDsgState\":1,\"pd.iconInvParallelMode\":0,\"ems.chgCmd\":1,\"pd.bppowerSoc\":50,\"pd.qcUsb1Watts\":0,\"bmsMaster.temp\":18,\"pd.iconTransSwMode\":0,\"ems.lcdShowSoc\":28,\"pd.kit1\":0,\"mppt.swVer\":50397223,\"ems.chgRemainTime\":3881,\"pd.usbqcUsedTime\":195139,\"mppt.inWatts\":0,\"bmsMaster.outputWatts\":0,\"pd.usbUsedTime\":1016985,\"bmsMaster.minCellTemp\":18,\"bmsMaster.tagChgAmp\":48000,\"pd.iconSolarPanelState\":0,\"bmsMaster.sysLoaderVer\":16842762,\"inv.invType\":8,\"pd.iconSocUpsState\":0,\"pd.errCode\":0,\"pd.iconPackHeaterMode\":0,\"ems.maxCloseOilEbSoc\":80,\"pd.carWatts\":0,\"pd.iconAcFreqState\":0,\"pd.iconWirelessChgState\":0,\"pd.iconSolarPanelMode\":0,\"inv.sysVer\":33620330}",
+    "ack": true
+  }
+}
