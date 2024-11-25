@@ -31,7 +31,7 @@ Examples: ``` */10 * * * * * ``` (every 10 seconds). For more information please
 ### Reset time for cumulate daily states (state is set to 0 at this time)
 This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
 A typical example would be the output power in Watts of a power source and you want to know the total energy (Watt-hours) that has been put out since the begin of day.
-The exact details of how to set that up can be found in the next section.
+The exact details of how to set that up can be found in the section "How the adapter works".
 
 Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 2, "minute": 22, "second": 22} ```, ``` {"hour": 3, "minute": 30} ```
 
@@ -206,11 +206,49 @@ The important part is the property "ecoflowApi" within "native":
 For read-write states the properties "setValueKey" and "setValueData" are neccessary.
 <br/>For read-only states they are not needed.
 
-<b>Note: </b> You can set the id of your states ina a device freely as you want. Feel free to create channels and/or folders according to your needs. 
+<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels and/or folders according to your needs. 
 <br/>In the Example 1 above the id 
 <br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
 <br/>could be replaced by 
 <br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.temperatureSensors.pv2Temperature"
+
+### Daily cumulate state values
+
+This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
+<br/>Example:
+
+``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "PV1 input power",
+      "read": true,
+      "write": false
+    },
+    "native": {
+      "cumulateDailyByTimeId": "heartbeat.pv1InputEnergyToday",
+      "ecoflowApi": {
+        "quotaValueKey": "20_1.pv1InputWatts",
+        "valueFactor": 0.1
+      }
+    },
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  },
+```
+
+The important part is the property "<b>cumulateDailyByTimeId</b>" within "native":
+<br/>It's value defines the id (relative to the device) of the state to hold the cumulated value.
+In the Example above that would be the state:
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputEnergyToday" 
+<br/>of course it must be of type number.
 
 <b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro, PowerStream and RiverPro.</b>
 
