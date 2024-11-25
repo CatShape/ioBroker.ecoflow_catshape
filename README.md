@@ -23,10 +23,40 @@ Use at own risk.
 The adapter is based on:
 * https://developer-eu.ecoflow.com/us/document/introduction
 
+## How to use
+
+### 1. Install the adapter in ioBroker and create an instance
+
+### 2. Fill the configuration of the instance
+
+### 3. Start/run the instance
+For each of the devices in the configuration the following ioBroker objects are automatically created: 
+<br/>object of type device with 4 states: "name", "productName", "online", "quota"
+
+### 4. Create ioBroker states
+The adapter creates only the 4 basic states "name", "productName", "online" and "quota".
+<br/>It is up to you to create more states within the devices.
+<br/>In the state "quota" you see the data provided by the EcoFlow API for your device. It comes as a JSON string.
+<br/>You want to use some (or all) of theese property-value pairs as states.
+<br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
+to understand how to set up your states. There you find many examples for different EcoFlow products. 
+<br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
+<br/>Also refer to the section <b>"How to set up the device states"</b>
+
+
+As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
+<br/>If you create or change read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
+
+### 5. Export/save the the ecoflow_catshape object-tree to a JSON file
+I recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
+<br/>In case you create a new instance of the adapter or you configure a new device, you can easily create your states by adding the object-tree from the (modified) JSON file.
+
+
 ## Configuration
 
 ### node-cron schedule for getting data from EcoFlow
-Examples: ``` */10 * * * * * ``` (every 10 seconds). For more information please visit: https://github.com/node-cron/node-cron/blob/master/README.md
+Examples: ``` 5 * * * * * ``` (once per minute), ``` */10 * * * * * ``` (every 10 seconds). 
+<br/>For more information please visit: https://github.com/node-cron/node-cron/blob/master/README.md
     
 ### Reset time for cumulate daily states (state is set to 0 at this time)
 This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
@@ -82,12 +112,12 @@ Create a request to the EcoFlow API that sends the new value.
 ### How to set up the device states
 
 In order to provide as much flexibility as possible, you can create the states for each device by yourself. 
-<br/>The adapter itself creates only the device-object and the 4 states "sn", "deviceName", "online" and "productName" as mentioned before. 
+<br/>The adapter itself creates only the device-object and the 4 states "deviceName", "productName", "online" and "quota" as mentioned before. 
 <br/>This gives you a lot of freedom in how to structure and name your states. 
 <br/>Typically you are not interested in all of the data delivered by the API. I recommend to only create the states you really need. 
 <br/>You can always add more states later on, whenever you need them. 
 
-The mapping between a state and the JSON-data delivered by the API is done in the state's native property. Here is how it works:
+The mapping between a state and the JSON-data delivered by the API is done in the native property of the state. Here is how it works:
 
 Lets say you want a state for the read-only property "20_1.pv2Temp". This is how the state definition would look like. Example 1:
 ``` 
