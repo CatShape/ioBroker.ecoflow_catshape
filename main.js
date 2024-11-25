@@ -601,6 +601,10 @@ class EcoflowCatshape extends utils.Adapter {
     
     async setCumulateDailyByTime(stringId, numberNew, numberOld, boolOnline) {
         
+        if (!(await this.objectExists(stringId))) {
+            this.log.warn('setCumulateDailyByTime: object: ' + stringId + ' not found');
+            return;
+        }
         const dateNow = new Date();
         const numberNowMs = dateNow.getTime();
         const objState = await this.getStateAsync(stringId);
