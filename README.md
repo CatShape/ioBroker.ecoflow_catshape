@@ -204,10 +204,15 @@ The important part is the property "ecoflowApi" within "native":
 <br/>  Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
 
 For read-write states the properties "setValueKey" and "setValueData" are neccessary.
-For read-only states they are not needed.
+<br/>For read-only states they are not needed.
 
-<b>Note: </b> You can set the id of your states ina a device freely as you want. Create channels and/or folders according your needs. 
-<br/>In the Example 1 above the id "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
+<b>Note: </b> You can set the id of your states ina a device freely as you want. Feel free to create channels and/or folders according to your needs. 
+<br/>In the Example 1 above the id 
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
+<br/>could be replaced by 
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.temperatureSensors.pv2Temperature"
+
+<b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro PowerStream and RiverPro.</b>
 
 ## Changelog
 
