@@ -53,11 +53,11 @@ The adapter checks whether the state value is empty and if yes, it will fill the
 
 ### Every time the node-cron schedule provided in the configuration is triggered, the following 3 steps are executed.
 
-1. For each of the devices in the configuration: 
+<b>1. For each of the devices in the configuration: </b>
 
 Create (if they do not exist already) the device-object with states "name", "online", "productName" and "quota".
 
-2. For each API key: 
+<b>2. For each API key: </b>
 
 Request all devices from the EcoFlow API. Response example: 
 ``` 
@@ -68,7 +68,7 @@ Request all devices from the EcoFlow API. Response example:
 ] 
 ```
 
-3. For each of theese devices if included in the configuration: 
+<b>3. For each of theese devices if included in the configuration: </b>
 
 Request device-data from the EcoFlow API. Response example: 
 ``` {"20_1.pv2Temp":190,"20_1.invOutputWatts":0,"20_1.pv2RelayStatus":0,"20_1.mqttTlsLastErr":0,"20_1.batInputVolt":493,"20_1.invDemandWatts":200,"20_1.wifiEncryptMode":3,"20_1.pv2OpVolt":0, ...} ```
