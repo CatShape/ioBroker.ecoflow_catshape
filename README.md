@@ -34,20 +34,19 @@ For each of the devices in the configuration the following ioBroker objects are 
 <br/>object of type device with 4 states: "name", "productName", "online", "quota"
 
 ### 4. Create ioBroker states
-The adapter creates only the 4 basic states "name", "productName", "online" and "quota".
+Only the 4 basic states "name", "productName", "online" and "quota" are automatically created by the adapter.
 <br/>It is up to you to create more states within the devices.
 <br/>In the state "quota" you see the data provided by the EcoFlow API for your device. It comes as a JSON string.
 <br/>You want to use some (or all) of theese property-value pairs as states.
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
-<br/>Also refer to the section <b>"How to set up the device states"</b>
-
+<br/>Also refer to the section <b>"How to set up the device states"</b> below.
 
 As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
-<br/>If you create or change read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
+<br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
 
-### 5. Export/save the the ecoflow_catshape object-tree to a JSON file
+### 5. (Optional) Export/save the ecoflow_catshape object-tree to a JSON file
 I recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
 <br/>In case you create a new instance of the adapter or you configure a new device, you can easily create your states by adding the object-tree from the (modified) JSON file.
 
@@ -77,7 +76,7 @@ It is recommended to check this box, because the data does not change anyway whi
 The device data delivered by the EcoFlow API, comes as one JSON-string containing all data (key-value pairs). It is called "quota". 
 You can select to have this quota saved to the state "quota" every time the data is delivered. 
 If you do not check this box, you can still force the adapter to fill this quota-state, by clearing the value of this state (set the value to empty-string). 
-The adapter checks whether the state value is empty and if yes, it will fill the state.
+The adapter checks whether this state is empty and if yes, it will be filled.
 
 ## How the adapter works
 
