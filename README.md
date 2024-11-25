@@ -1,2 +1,281 @@
+![Logo](admin/ecoflow_catshape.png)
 # ioBroker.ecoflow_catshape
-ioBroker adapter for EcoFlow iot
+
+[![NPM version](https://img.shields.io/npm/v/iobroker.ecoflow_catshape.svg)](https://www.npmjs.com/package/iobroker.ecoflow_catshape)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.ecoflow_catshape.svg)](https://www.npmjs.com/package/iobroker.ecoflow_catshape)
+![Number of Installations](https://iobroker.live/badges/ecoflow_catshape-installed.svg)
+![Current version in stable repository](https://iobroker.live/badges/ecoflow_catshape-stable.svg)
+
+[![NPM](https://nodei.co/npm/iobroker.ecoflow_catshape.png?downloads=true)](https://nodei.co/npm/iobroker.ecoflow_catshape/)
+
+## EcoFlow adapter for ioBroker
+
+ioBroker adapter based on the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com). 
+
+Provides communication with products from EcoFlow (https://www.ecoflow.com) within the ioBroker software (https://www.iobroker.net).
+
+## WARNING
+
+This adapter uses the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com) and therefore depends on the maintenance of said API by EcoFlow.
+
+Use at own risk.
+
+The adapter is based on:
+* https://developer-eu.ecoflow.com/us/document/introduction
+
+## Configuration
+
+### node-cron schedule for getting data from EcoFlow
+Examples: ``` */10 * * * * * ``` (every 10 seconds). For more information please visit: https://github.com/node-cron/node-cron/blob/master/README.md
+    
+### Reset time for cumulate daily states (state is set to 0 at this time)
+This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
+A typical example would be the output power in Watts of a power source and you want to know the total energy (Watt-hours) that has been put out since the begin of day.
+The exact details of how to set that up can be found in the section "How the adapter works".
+
+Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 2, "minute": 22, "second": 22} ```, ``` {"hour": 3, "minute": 30} ```
+
+### EcoFlow API keys
+In order to use this adapter you need a valid EcoFlow API key. You can request a key on: https://developer-eu.ecoflow.com or https://developer.ecoflow.com.
+
+### EcoFlow Devices
+Here you provide the serial numbers of the devices you want to be included in the adapter. 
+
+For each device you can choose whether or not to request and update the device data if the device is offline. 
+It is recommended to check this box, because the data does not change anyway while the device is offline. 
+
+The device data delivered by the EcoFlow API, comes as one JSON-string containing all data (key-value pairs). It is called "quota". 
+You can select to have this quota saved to the state "quota" every time the data is delivered. 
+If you do not check this box, you can still force the adapter to fill this quota-state, by clearing the value of this state (set the value to empty-string). 
+The adapter checks whether the state value is empty and if yes, it will fill the state.
+
+## How the adapter works
+
+### Every time the node-cron schedule provided in the configuration is triggered, the following 3 steps are executed.
+
+1. For each of the devices in the configuration: 
+
+Create (if they do not exist already) the device-object with states "name", "online", "productName" and "quota".
+
+2. For each API key: 
+
+Request all devices from the EcoFlow API. Response example: 
+``` 
+[
+    {"sn":"DCEBZXXXXXXXXXX","deviceName":"Delta Pro test","online":1,"productName":"DELTA Pro"},
+    {"sn":"HW51ZXXXXXXXXXX","deviceName":"PowerStream test","online":1,"productName":"PowerStream"},
+    {"sn":"P2EBZXXXXXXXXXX","deviceName":"River Pro test","online":0,"productName":"RIVER Pro"}
+] 
+```
+
+3. For each of theese devices if included in the configuration: 
+
+Request device-data from the EcoFlow API. Response example: 
+``` {"20_1.pv2Temp":190,"20_1.invOutputWatts":0,"20_1.pv2RelayStatus":0,"20_1.mqttTlsLastErr":0,"20_1.batInputVolt":493,"20_1.invDemandWatts":200,"20_1.wifiEncryptMode":3,"20_1.pv2OpVolt":0, ...} ```
+
+Loop over all states of the device: Get and set the corresponding value from the above response. 
+
+### Every time the value of a read-write state is changed with ack=false:
+
+Create a request to the EcoFlow API that sends the new value.
+
+### How to set up the device states
+
+In order to provide as much flexibility as possible, you can create the states for each device by yourself. 
+<br/>The adapter itself creates only the device-object and the 4 states "sn", "deviceName", "online" and "productName" as mentioned before. 
+<br/>This gives you a lot of freedom in how to structure and name your states. 
+<br/>Typically you are not interested in all of the data delivered by the API. I recommend to only create the states you really need. 
+<br/>You can always add more states later on, whenever you need them. 
+
+The mapping between a state and the JSON-data delivered by the API is done in the state's native property. Here is how it works:
+
+Lets say you want a state for the read-only property "20_1.pv2Temp". This is how the state definition would look like. Example 1:
+``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "°C",
+      "name": "PV2 temperature",
+      "read": true,
+      "write": false,
+      "def": 20
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "20_1.pv2Temp",
+        "valueFactor": 0.1
+      }
+    },
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  } 
+```
+
+Example 2:
+
+``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.prioritizeBatterySupply": {
+    "type": "state",
+    "common": {
+      "type": "boolean",
+      "name": "Prioritize power to battery",
+      "read": true,
+      "write": true
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "20_1.supplyPriority",
+        "valueMap": {
+          "0": false,
+          "1": true
+        },
+        "setValueKey": "params.supplyPriority",
+        "setValueData": {
+          "sn": "",
+          "cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK",
+          "params": {
+            "supplyPriority": "0"
+          }
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.prioritizeBatterySupply",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  }
+```
+
+Example 3:
+
+``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.batteryPackType": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Battery pack type",
+      "read": true,
+      "write": false,
+      "states": {
+        "0": "No battery",
+        "1": "Secondary pack",
+        "2": "Primary pack",
+        "3": "Primary pack"
+      }
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "20_1.bpType"
+      }
+    },
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.batteryPackType",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  }
+```
+
+The important part is the property "ecoflowApi" within "native":
+
+<b>ecoflowApi</b> (object) properties:
+
+<b>quotaValueKey</b> (string): Identifies the property of the JSON quota-string delivered by the API. Example value: "20_1.pv2Temp"
+
+<b>valueFactor</b> (number): Factor to be applied to the value delivered by the API. Example value: 0.1
+
+<b>valueMap</b> (object): Mapping to be applied to the value delivered by the API. Example value: {"0": false,"1": true}
+
+<b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: "params.supplyPriority"
+
+<b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
+<br/>  Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
+<br/>  Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
+
+For read-write states the properties "setValueKey" and "setValueData" are neccessary.
+<br/>For read-only states they are not needed.
+
+<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels and/or folders according to your needs. 
+<br/>In the Example 1 above the id 
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
+<br/>could be replaced by 
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.temperatureSensors.pv2Temperature"
+
+### Daily cumulate state values
+
+This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
+<br/>Example:
+
+``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputWatts": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "W",
+      "name": "PV1 input power",
+      "read": true,
+      "write": false
+    },
+    "native": {
+      "cumulateDailyByTimeId": "heartbeat.pv1InputEnergyToday",
+      "ecoflowApi": {
+        "quotaValueKey": "20_1.pv1InputWatts",
+        "valueFactor": 0.1
+      }
+    },
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputWatts",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  },
+```
+
+The important part is the property "<b>cumulateDailyByTimeId</b>" within "native":
+<br/>It's value defines the id (relative to the device) of the state to hold the cumulated value.
+In the Example above that would be the state:
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputEnergyToday" 
+<br/>of course it must be of type number.
+
+<b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro, PowerStream and RiverPro.</b>
+
+## Changelog
+
+### 0.0.1
+* (CatShape) initial release
+
+## License
+MIT License
+
+Copyright (c) 2024 CatShape
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
