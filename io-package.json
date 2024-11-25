@@ -1,0 +1,106 @@
+{
+    "common": {
+        "name": "ecoflow_catshape",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "titleLang": {
+            "en": "ecoflow_catshape",
+            "de": "ecoflow_catshape",
+            "ru": "ecoflow_catshape",
+            "pt": "ecoflow_catshape",
+            "nl": "ecoflow_catshape",
+            "fr": "ecoflow_catshape",
+            "it": "ecoflow_catshape",
+            "es": "ecoflow_catshape",
+            "pl": "ecoflow_catshape",
+            "uk": "ecoflow_catshape",
+            "zh-cn": "ecoflow_catshape"
+        },
+        "desc": {
+            "en": "EcoFlow Adapter based on official EcoFlow API (HTTP)",
+            "de": "EcoFlow-Adapter basierend auf der offiziellen EcoFlow-API (HTTP)",
+            "ru": "Адаптер EcoFlow на основе официального API EcoFlow (HTTP).",
+            "pt": "Adaptador EcoFlow baseado na API oficial EcoFlow (HTTP)",
+            "nl": "EcoFlow-adapter gebaseerd op de officiële EcoFlow API (HTTP)",
+            "fr": "Adaptateur EcoFlow basé sur l'API EcoFlow officielle (HTTP)",
+            "it": "Adattatore EcoFlow basato sull'API EcoFlow ufficiale (HTTP)",
+            "es": "Adaptador EcoFlow basado en la API oficial de EcoFlow (HTTP)",
+            "pl": "Adapter EcoFlow oparty na oficjalnym API EcoFlow (HTTP)",
+            "uk": "Адаптер EcoFlow на основі офіційного API EcoFlow (HTTP)",
+            "zh-cn": "基于官方 EcoFlow API 的 EcoFlow (HTTP) 适配器"
+        },
+        "authors": [
+            "CatShape <ahofmann@yahoo.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "EcoFlow",
+            "PowerStream",
+            "powerstation",
+            "Delta",
+            "River",
+            "Powerkit",
+            "PowerOcean",
+            "SmartHomePanel",
+            "Smart Home",
+            "home automation"
+        ],
+        "licenseInformation": {
+            "type": "free",
+            "license": "MIT"
+        },
+        "platform": "Javascript/Node.js",
+        "icon": "ecoflow_catshape.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/CatShape/ioBroker.ecoflow_catshape/main/admin/ecoflow_catshape.png",
+        "readme": "https://github.com/CatShape/ioBroker.ecoflow_catshape/main/README.md",
+        "loglevel": "info",
+        "tier": 3,
+        "mode": "daemon",
+        "type": "iot-systems",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "adminUI": {
+            "config": "json"
+        },
+        "dependencies": [
+            {
+                "js-controller": ">=4.0.11"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.0.23"
+            }
+        ]
+    },
+    "protectedNative": [
+        "apiKeys.apiSecretKey"
+    ],
+    "encryptedNative": [
+        "apiKeys.apiSecretKey"
+    ],
+    "native": {
+        "cronSchedule": "*/10 * * * * *",
+        "cumulateDailyResetTime": "{\"hour\": 0, \"minute\": 0, \"second\": 0}",
+        "apiKeys": [],
+        "devices": []
+    },
+    "objects": [],
+    "instanceObjects": []
+}
