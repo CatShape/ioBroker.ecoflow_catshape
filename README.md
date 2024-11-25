@@ -82,10 +82,10 @@ Create a request to the EcoFlow API that sends the new value.
 ### How to set up the device states
 
 In order to provide as much flexibility as possible, you can create the states for each device by yourself. 
-The adapter itself creates only the device-object and the 4 states "sn", "deviceName", "online" and "productName" as mentioned before. 
-This gives you a lot of freedom in how to structure and name your states. 
-Typically you are not interested in all of the data delivered by the API. I recommend to only create the states you really need. 
-You can always add more states later on, whenever you need them. 
+<br/>The adapter itself creates only the device-object and the 4 states "sn", "deviceName", "online" and "productName" as mentioned before. 
+<br/>This gives you a lot of freedom in how to structure and name your states. 
+<br/>Typically you are not interested in all of the data delivered by the API. I recommend to only create the states you really need. 
+<br/>You can always add more states later on, whenever you need them. 
 
 The mapping between a state and the JSON-data delivered by the API is done in the state's native property. Here is how it works:
 
@@ -189,24 +189,25 @@ Example 3:
 
 The important part is the property "ecoflowApi" within "native":
 
-ecoflowApi (object):
-  
-  Properties:
-  
-    quotaValueKey (string): Identifies the property of the JSON quota-string delivered by the API. Example value: "20_1.pv2Temp"
-    
-    valueFactor (number): Factor to be applied to the value delivered by the API. Example value: 0.1
-    
-    valueMap (object): Mapping to be applied to the value delivered by the API. Example value: {"0": false,"1": true}
-    
-    setValueKey (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: "params.supplyPriority"
-    
-    setValueData (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
-      Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
-      Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
+<b>ecoflowApi</b> (object) properties:
+
+<b>quotaValueKey</b> (string): Identifies the property of the JSON quota-string delivered by the API. Example value: "20_1.pv2Temp"
+
+<b>valueFactor</b> (number): Factor to be applied to the value delivered by the API. Example value: 0.1
+
+<b>valueMap</b> (object): Mapping to be applied to the value delivered by the API. Example value: {"0": false,"1": true}
+
+<b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: "params.supplyPriority"
+
+<b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
+<br/>  Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
+<br/>  Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
 
 For read-write states the properties "setValueKey" and "setValueData" are neccessary.
-For read-only states thy are not needed.
+For read-only states they are not needed.
+
+<b>Note: </b> You can set the id of your states ina a device freely as you want. Create channels and/or folders according your needs. 
+<br/>In the Example 1 above the id "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
 
 ## Changelog
 
