@@ -278,7 +278,27 @@ The important part is the property "<b>cumulateDailyByTimeId</b>" within "native
 <br/>It's value defines the id (relative to the device) of the state to hold the cumulated value.
 In the Example above that would be the state:
 <br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputEnergyToday" 
-<br/>of course it must be of type number.
+
+``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputEnergyToday": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "Wh",
+      "name": "PV1 input energy today",
+      "read": true,
+      "write": false
+    },
+    "native": {},
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputEnergyToday",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  },
+```
 
 <b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro, PowerStream and RiverPro.</b>
 
