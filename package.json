@@ -1,16 +1,15 @@
 {
   "name": "iobroker.ecoflow_catshape",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Ecoflow Adapter based on official Ecoflow API",
   "author": {
     "name": "CatShape",
-    "email": "ahofmann@yahoo.com"
   },
   "homepage": "https://github.com/CatShape/ioBroker.ecoflow_catshape",
   "license": "MIT",
   "keywords": [
     "ioBroker",
-    "template",
+    "EcoFlow",
     "Smart Home",
     "home automation"
   ],
