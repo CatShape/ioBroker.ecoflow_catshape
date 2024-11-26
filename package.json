@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "Ecoflow Adapter based on official Ecoflow API",
   "author": {
-    "name": "CatShape",
+    "name": "CatShape"
   },
   "homepage": "https://github.com/CatShape/ioBroker.ecoflow_catshape",
   "license": "MIT",
