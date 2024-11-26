@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "ecoflow_catshape",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "news": {
+            "0.0.2": {
+                "en": "some code improvements"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
@@ -44,7 +47,7 @@
             "zh-cn": "基于官方 EcoFlow API 的 EcoFlow (HTTP) 适配器"
         },
         "authors": [
-            "CatShape <ahofmann@yahoo.com>"
+            "CatShape"
         ],
         "keywords": [
             "ioBroker",
