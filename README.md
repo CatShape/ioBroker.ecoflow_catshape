@@ -300,7 +300,7 @@ In the Example above that would be the state:
   },
 ```
 
-<b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples I use for DeltaPro, PowerStream and RiverPro.</b>
+<b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples for DeltaPro, PowerStream and RiverPro.</b>
 
 ## Changelog
 
