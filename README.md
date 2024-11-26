@@ -97,16 +97,16 @@ Request all devices from the EcoFlow API. Response example:
 ] 
 ```
 
-<b>3. For each of theese devices if included in the configuration: </b>
+<b>3. For each of theese devices (if included in the configuration): </b>
 
-Request device-data from the EcoFlow API. Response example: 
+Request device-data from the EcoFlow API. Response example (quota): 
 ``` {"20_1.pv2Temp":190,"20_1.invOutputWatts":0,"20_1.pv2RelayStatus":0,"20_1.mqttTlsLastErr":0,"20_1.batInputVolt":493,"20_1.invDemandWatts":200,"20_1.wifiEncryptMode":3,"20_1.pv2OpVolt":0, ...} ```
 
 Loop over all states of the device: Get and set the corresponding value from the above response. 
 
 ### Every time the value of a read-write state is changed with ack=false:
 
-Create a request to the EcoFlow API that sends the new value.
+Create a request to the EcoFlow API that sends the new value to the EcoFLow cloud (and from there hopefully to the physical device).
 
 ### How to set up the device states
 
