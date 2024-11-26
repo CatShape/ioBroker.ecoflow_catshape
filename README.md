@@ -305,6 +305,9 @@ In the Example above that would be the state:
 
 ## Changelog
 
+### 0.0.3
+* (CatShape) some code improvements
+
 ### 0.0.2
 * (CatShape) some code improvements
 
