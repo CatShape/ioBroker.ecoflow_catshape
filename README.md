@@ -74,9 +74,10 @@ For each device you can choose whether or not to request and update the device d
 It is recommended to check this box, because the data does not change anyway while the device is offline. 
 
 The device data delivered by the EcoFlow API, comes as one JSON-string containing all data (key-value pairs). It is called "quota". 
-You can select to have this quota saved to the state "quota" every time the data is delivered. 
-If you do not check this box, you can still force the adapter to fill this quota-state, by clearing the value of this state (set the value to empty-string). 
-The adapter checks whether this state is empty and if yes, it will be filled.
+<br/>You can select to have this quota saved to the state "quota" every time the data is delivered. 
+<br/>If you do not check this box, you can still force the adapter to fill this quota-state, by clearing the value of this state (set the value to empty-string). 
+<br/>The adapter always checks whether this state is empty, and if so, it will be filled.
+<br/>The idea behind this state is purely informative. It gives you the possibility to check out the complete data-set delivered by the API. 
 
 ## How the adapter works
 
