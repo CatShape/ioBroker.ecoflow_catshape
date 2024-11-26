@@ -124,7 +124,6 @@ class EcoflowCatshape extends adapterCore.Adapter {
             }
         }
         
-        
         // examples for the checkPassword/checkGroup functions
         //let result = await this.checkPasswordAsync('admin', 'iobroker');
         //this.log.info('check user admin pw iobroker: ' + result);
