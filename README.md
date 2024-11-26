@@ -62,7 +62,7 @@ This adapter offers the possibility for any state with numeric value to have its
 A typical example would be the output power in Watts of a power source and you want to know the total energy (Watt-hours) that has been put out since the begin of day.
 The exact details of how to set that up can be found in the section "How the adapter works".
 
-Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 2, "minute": 22, "second": 22} ```, ``` {"hour": 3, "minute": 30} ```
+Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 3, "minute": 30} ```
 
 ### EcoFlow API keys
 In order to use this adapter you need a valid EcoFlow API key. You can request a key on: https://developer-eu.ecoflow.com or https://developer.ecoflow.com.
