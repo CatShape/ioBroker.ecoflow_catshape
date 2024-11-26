@@ -1,13 +1,6 @@
 ![Logo](admin/ecoflow_catshape.png)
 # ioBroker.ecoflow_catshape
 
-[![NPM version](https://img.shields.io/npm/v/iobroker.ecoflow_catshape.svg)](https://www.npmjs.com/package/iobroker.ecoflow_catshape)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.ecoflow_catshape.svg)](https://www.npmjs.com/package/iobroker.ecoflow_catshape)
-![Number of Installations](https://iobroker.live/badges/ecoflow_catshape-installed.svg)
-![Current version in stable repository](https://iobroker.live/badges/ecoflow_catshape-stable.svg)
-
-[![NPM](https://nodei.co/npm/iobroker.ecoflow_catshape.png?downloads=true)](https://nodei.co/npm/iobroker.ecoflow_catshape/)
-
 ## EcoFlow adapter for ioBroker
 
 ioBroker adapter based on the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com). 
@@ -16,7 +9,7 @@ Provides communication with products from EcoFlow (https://www.ecoflow.com) with
 
 ## WARNING
 
-This adapter uses the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com) and therefore depends on the maintenance of said API by EcoFlow.
+This adapter uses the official EcoFlow HTTP-API (https://developer-eu.ecoflow.com) and therefore depends on the maintenance of that API by EcoFlow.
 
 Use at own risk.
 
@@ -304,6 +297,9 @@ In the Example above that would be the state:
 <b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples for DeltaPro, PowerStream and RiverPro.</b>
 
 ## Changelog
+
+### 0.0.3
+* (CatShape) some code improvements
 
 ### 0.0.2
 * (CatShape) some code improvements
