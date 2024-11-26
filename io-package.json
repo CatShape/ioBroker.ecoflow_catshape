@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "ecoflow_catshape",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "news": {
+            "0.0.3": {
+                "en": "some code improvements"
+            },
             "0.0.2": {
                 "en": "some code improvements"
             },
