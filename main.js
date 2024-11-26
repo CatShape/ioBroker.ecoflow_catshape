@@ -52,8 +52,9 @@ class EcoflowCatshape extends adapterCore.Adapter {
         }
         
         let numA = 0;
-        let numArrayLen = 0;
+        let numApiKeysLen = 0;
         let objAllApiKeys = {};
+        let numArrayLen = 0;
         let objConfigDevice = {};
         let stringId = '';
         let objStateObj = {};
@@ -75,12 +76,12 @@ class EcoflowCatshape extends adapterCore.Adapter {
             return;
         }
         
-        numArrayLen = this.config.apiKeys.length;
-        if (numArrayLen < 1) {
+        numApiKeysLen = this.config.apiKeys.length;
+        if (numApiKeysLen < 1) {
             this.log.error('Config "API keys" at least one entry is needed');
             return;
         }
-        for (numA = 1; numA <= numArrayLen; numA = numA + 1) {
+        for (numA = 1; numA <= numApiKeysLen; numA = numA + 1) {
             objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
         }
         this.log.debug('objAllApiKeys: ' + JSON.stringify(objAllApiKeys));
@@ -92,6 +93,9 @@ class EcoflowCatshape extends adapterCore.Adapter {
         }
         for (numA = 0; numA < numArrayLen; numA = numA + 1) {
             objConfigDevice = this.config.devices[numA];
+            if (objConfigDevice.apiKey > numApiKeysLen) {
+                objConfigDevice.apiKey = numApiKeysLen;
+            }
             objConfigDevice.apiKey = objAllApiKeys[objConfigDevice.apiKey];
             this.objConfigDevices[objConfigDevice.serialNumber] = objConfigDevice;
         }
