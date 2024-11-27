@@ -53,7 +53,7 @@ Examples: ``` 5 * * * * * ``` (once per minute), ``` */10 * * * * * ``` (every 1
 ### Reset time for cumulate daily states (state is set to 0 at this time)
 This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
 A typical example would be the output power in Watts of a power source and you want to know the total energy (Watt-hours) that has been put out since the begin of day.
-The exact details of how to set that up can be found in the section [How the adapter works](#How-the-adapter-works).
+The exact details of how to set that up can be found in the section [Daily cumulate state values](#Daily-cumulate-state-values).
 
 Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 3, "minute": 30} ```, ``` {"hour": 1, "minute": 55, "second": 5} ```
 
