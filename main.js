@@ -107,7 +107,7 @@ class EcoflowCatshape extends adapterCore.Adapter {
         Here a simple template for a boolean variable named "testVariable"
         Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
         */
-        await ecoflowUtils.createIobObjects(this);
+        await ecoflowUtils.createIobObjects(this, objAllApiKeys);
         
         // In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
         // this.subscribeStates('testVariable');
