@@ -39,9 +39,10 @@ to understand how to set up your states. There you find many examples for differ
 As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
 <br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
 
-### 5. (Optional) Export/save the ecoflow_catshape object-tree to a JSON file
-I recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
-<br/>In case you create a new instance of the adapter or you configure a new device, you can easily create your states by adding the object-tree from the (modified) JSON file.
+### 5. Export/save the ecoflow_catshape object-tree to a JSON file (always repeat this after making any changes in your state-objects)
+I strongly recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
+<br/>In case you create a new instance of the adapter or you configure a new device, you can then easily create your states by adding the object-tree from the (modified) JSON file.
+<br/>Keep in mind: If you delete an adapter-instance or the adapter itself, all the states in that instance are also deleted! If you haven't saved your states, you loose all that work.
 
 
 ## Configuration
