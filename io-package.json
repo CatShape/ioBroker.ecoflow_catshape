@@ -4,10 +4,10 @@
         "version": "0.0.4",
         "news": {
             "0.0.4": {
-                "en": "some code improvements"
+                "en": "resolved: errors when quota-value for a state was of type object"
             },
             "0.0.3": {
-                "en": "new configuration API URL and some code improvements"
+                "en": "new configuration: API URL"
             },
             "0.0.2": {
                 "en": "some code improvements"
