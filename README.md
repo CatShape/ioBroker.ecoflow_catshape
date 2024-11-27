@@ -34,7 +34,7 @@ Only the 4 basic states "name", "productName", "online" and "quota" are automati
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
-<br/>Also refer to the section [How to set up the device states](#How-to-set-up-the-device-states) below.
+<br/>Also refer to the section [How to set up the device states](#How-to-set-up-the-device-states).
 
 As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
 <br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
