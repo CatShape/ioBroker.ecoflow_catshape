@@ -78,17 +78,21 @@ class EcoflowCatshape extends adapterCore.Adapter {
         
         numApiKeysLen = this.config.apiKeys.length;
         if (numApiKeysLen < 1) {
-            this.log.error('Config "API keys" at least one entry is needed');
+            this.log.error('Config "API keys": At least one entry is needed');
             return;
         }
         for (numA = 1; numA <= numApiKeysLen; numA = numA + 1) {
+            if (!this.config.apiKeys[numA - 1].baseUrl) {
+                this.log.error('Config "API keys": Select URL');
+                return;
+            }
             objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
         }
         this.log.debug('objAllApiKeys: ' + JSON.stringify(objAllApiKeys));
         
         numArrayLen = this.config.devices.length;
         if (numArrayLen < 1) {
-            this.log.error('Config "EcoFlow devices" at least one entry is needed');
+            this.log.error('Config "EcoFlow devices": At least one entry is needed');
             return;
         }
         for (numA = 0; numA < numArrayLen; numA = numA + 1) {
