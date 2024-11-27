@@ -34,14 +34,15 @@ Only the 4 basic states "name", "productName", "online" and "quota" are automati
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
-<br/>Also refer to the section <b>"How to set up the device states"</b> below.
+<br/>Also refer to the section [How to set up the device states](#How-to-set-up-the-device-states).
 
 As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
 <br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
 
-### 5. (Optional) Export/save the ecoflow_catshape object-tree to a JSON file
-I recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
-<br/>In case you create a new instance of the adapter or you configure a new device, you can easily create your states by adding the object-tree from the (modified) JSON file.
+### 5. Export/save the ecoflow_catshape object-tree to a JSON file (always repeat this after making any changes in your state-objects)
+I strongly recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
+<br/>In case you create a new instance of the adapter or you configure a new device, you can then easily create your states by adding the object-tree from the (modified) JSON file.
+<br/>Keep in mind: If you delete an adapter-instance or the adapter itself, all the states in that instance are also deleted! If you haven't saved your states, you loose all that work.
 
 
 ## Configuration
@@ -53,7 +54,7 @@ Examples: ``` 5 * * * * * ``` (once per minute), ``` */10 * * * * * ``` (every 1
 ### Reset time for cumulate daily states (state is set to 0 at this time)
 This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
 A typical example would be the output power in Watts of a power source and you want to know the total energy (Watt-hours) that has been put out since the begin of day.
-The exact details of how to set that up can be found in the section "How the adapter works".
+The exact details of how to set that up can be found in the section [Daily cumulate state values](#Daily-cumulate-state-values).
 
 Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 3, "minute": 30} ```, ``` {"hour": 1, "minute": 55, "second": 5} ```
 
@@ -298,7 +299,12 @@ In the Example above that would be the state:
 
 ## Changelog
 
+### 0.0.4
+* (CatShape) resolved: errors when quota-value for a state was of type object
+* (CatShape) some code improvements
+
 ### 0.0.3
+* (CatShape) new configuration: API URL
 * (CatShape) some code improvements
 
 ### 0.0.2
