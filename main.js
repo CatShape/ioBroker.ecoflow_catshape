@@ -171,7 +171,7 @@ class EcoflowCatshape extends adapterCore.Adapter {
                 this.log.debug('this.clearInterval(requestAllDataInterval)');
             }
             
-            if(cronSchedule) {
+            if (cronSchedule) {
                 cronSchedule.stop();
                 this.log.debug('cronSchedule.stop()');
             }
