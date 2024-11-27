@@ -34,7 +34,7 @@ Only the 4 basic states "name", "productName", "online" and "quota" are automati
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
-<br/>Also refer to the section <b>"How to set up the device states"</b> below.
+<br/>Also refer to the section [How to set up the device states](#How-to-set-up-the-device-states) below.
 
 As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
 <br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
@@ -53,7 +53,7 @@ Examples: ``` 5 * * * * * ``` (once per minute), ``` */10 * * * * * ``` (every 1
 ### Reset time for cumulate daily states (state is set to 0 at this time)
 This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
 A typical example would be the output power in Watts of a power source and you want to know the total energy (Watt-hours) that has been put out since the begin of day.
-The exact details of how to set that up can be found in the section "How the adapter works".
+The exact details of how to set that up can be found in the section [How the adapter works](#How-the-adapter-works).
 
 Examples: ``` {"hour": 0} ``` (midnight), ``` {"hour": 3, "minute": 30} ```, ``` {"hour": 1, "minute": 55, "second": 5} ```
 
