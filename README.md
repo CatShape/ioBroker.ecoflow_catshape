@@ -115,7 +115,7 @@ The mapping between a state and the JSON-data delivered by the API is done in th
 
 Lets say you want a state for the read-only property "20_1.pv2Temp". This is how the state definition would look like. Example 1:
 ``` 
-  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp": {
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp": {
     "type": "state",
     "common": {
       "type": "number",
@@ -131,7 +131,7 @@ Lets say you want a state for the read-only property "20_1.pv2Temp". This is how
         "valueFactor": 0.1
       }
     },
-    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp",
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp",
     "acl": {
       "object": 1636,
       "state": 1636,
@@ -215,27 +215,27 @@ The important part is the property "ecoflowApi" within "native":
 
 <b>ecoflowApi</b> (object) properties:
 
-<b>quotaValueKey</b> (string): Identifies the property of the JSON quota-string delivered by the API. Example value: "20_1.pv2Temp"
+<b>quotaValueKey</b> (string): Identifies the property of the JSON quota-string delivered by the API. Example value: ``` "20_1.pv2Temp" ```
 
-<b>valueFactor</b> (number): Factor to be applied to the value delivered by the API. Example value: 0.1
+<b>valueFactor</b> (number): Factor to be applied to the value delivered by the API. Example value: ``` 0.1 ```
 
-<b>valueMap</b> (object): Mapping to be applied to the value delivered by the API. Example value: {"0": false,"1": true}
+<b>valueMap</b> (object): Mapping to be applied to the value delivered by the API. Example value: ``` {"0": false,"1": true} ```
 
-<b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: "params.supplyPriority"
+<b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: ``` "params.supplyPriority" ```
 
 <b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
 <br/>  Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
-<br/>  Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
+<br/>  Example value: ``` {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}} ```
 <br/>  You don't have to fill in the value for "sn". This serves only as a template which will be used at runtime.
 
 For read-write states the properties "setValueKey" and "setValueData" are neccessary.
 <br/>For read-only states they are not needed.
 
-<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels and/or folders according to your needs. 
+<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels according to your needs. 
 <br/>In the Example 1 above the id 
-<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp"
 <br/>could be replaced by 
-<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.temperatureSensors.pv2Temperature"
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.pv2Temperature"
 
 ### Daily cumulate state values
 
