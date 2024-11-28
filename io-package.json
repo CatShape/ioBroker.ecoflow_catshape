@@ -4,7 +4,7 @@
         "version": "0.0.5",
         "news": {
             "0.0.5": {
-                "en": ""
+                "en": "resolved: errors in configuration checking"
             },
             "0.0.4": {
                 "en": "resolved: errors when quota-value for a state was of type object"
