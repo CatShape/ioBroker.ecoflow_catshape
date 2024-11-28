@@ -34,16 +34,16 @@ Only the 4 basic states "name", "productName", "online" and "quota" are automati
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
-<br/>Also refer to the section [How to set up the device states](#How-to-set-up-the-device-states).
+<br/>For more information please read the section [How to set up the device states](#How-to-set-up-the-device-states).
 
-As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
-<br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
+As soon as you add a new read-only state, the adapter will start updating its value. No instance restart is needed.
+<br/>If you add a new read-write state, you have to restart the instance in order for the adapter to register value-changes of the new state!
 
-### 5. Export/save the ecoflow_catshape object-tree to a JSON file (always repeat this after making any changes in your state-objects)
-I strongly recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
-<br/>In case you create a new instance of the adapter or you configure a new device, you can then easily create your states by adding the object-tree from the (modified) JSON file.
-<br/>Keep in mind: If you delete an adapter-instance or the adapter itself, all the states in that instance are also deleted! If you haven't saved your states, you loose all that work.
-
+### 5. Export/save the ecoflow_catshape object-tree to a JSON-file.
+I strongly recommend that you export/save the complete ecoflow_catshape object-tree to a JSON-file. Use the "Save objects tree as JSON file" action in ioBroker. 
+<br/>Whenever you change or add any states, don't do it in ioBroker directly, but rather do it in your file and then use the "add objects tree from JSON file" action in ioBroker.
+<br/>This way you have your states always up to date saved in a file and you can easily recreate them in ioBroker if needed.
+<br/>Keep in mind: If you delete an adapter-instance or the adapter itself, all the states in that instance are also deleted!.
 
 ## Configuration
 
