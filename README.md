@@ -24,12 +24,12 @@ The adapter is based on:
 
 ### 3. Start/run the instance
 For each of the devices in the configuration the following ioBroker objects are automatically created: 
-<br/>object of type device with 4 states: "name", "productName", "online", "quota"
+<br/>Object of type device with 4 states: "name", "productName", "online", "quota"
 
 ### 4. Create ioBroker states
 Only the 4 basic states "name", "productName", "online" and "quota" are automatically created by the adapter.
 <br/>It is up to you to create more states within the devices.
-<br/>In the state "quota" you see the data provided by the EcoFlow API for your device. It comes as a JSON string.
+<br/>In the state "quota" you see the complete data-set provided by the EcoFlow API for your device. It comes as a JSON string.
 <br/>You want to use some (or all) of theese property-value pairs as states.
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
