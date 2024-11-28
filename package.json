@@ -1,7 +1,7 @@
 {
   "name": "iobroker.ecoflow_catshape",
   "version": "0.0.5",
-  "description": "Ecoflow Adapter based on official Ecoflow API",
+  "description": "EcoFlow Adapter based on official EcoFlow API",
   "author": {
     "name": "CatShape"
   },
@@ -10,6 +10,13 @@
   "keywords": [
     "ioBroker",
     "EcoFlow",
+    "PowerStream",
+    "powerstation",
+    "Delta",
+    "River",
+    "Powerkit",
+    "PowerOcean",
+    "SmartHomePanel",
     "Smart Home",
     "home automation"
   ],
