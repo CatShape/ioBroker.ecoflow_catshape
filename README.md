@@ -24,26 +24,26 @@ The adapter is based on:
 
 ### 3. Start/run the instance
 For each of the devices in the configuration the following ioBroker objects are automatically created: 
-<br/>object of type device with 4 states: "name", "productName", "online", "quota"
+<br/>Object of type device with 4 states: "name", "productName", "online", "quota"
 
 ### 4. Create ioBroker states
 Only the 4 basic states "name", "productName", "online" and "quota" are automatically created by the adapter.
 <br/>It is up to you to create more states within the devices.
-<br/>In the state "quota" you see the data provided by the EcoFlow API for your device. It comes as a JSON string.
+<br/>In the state "quota" you see the complete data-set provided by the EcoFlow API for your device. It comes as a JSON string.
 <br/>You want to use some (or all) of theese property-value pairs as states.
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
-<br/>Also refer to the section [How to set up the device states](#How-to-set-up-the-device-states).
+<br/>For more information please read the section [How to set up the device states](#How-to-set-up-the-device-states).
 
-As soon as you create a new read-only state, the adapter will start updating its value. No instance restart is needed.
-<br/>If you create read-write states, you have to restart the instance in order for the adapter to register value-changes of theese new states!
+As soon as you add a new read-only state, the adapter will start updating its value. No instance restart is needed.
+<br/>If you add a new read-write state, you have to restart the instance in order for the adapter to register value-changes of the new state!
 
-### 5. Export/save the ecoflow_catshape object-tree to a JSON file (always repeat this after making any changes in your state-objects)
-I strongly recommend that you export/save the complete ecoflow_catshape object-tree to a JSON file. 
-<br/>In case you create a new instance of the adapter or you configure a new device, you can then easily create your states by adding the object-tree from the (modified) JSON file.
-<br/>Keep in mind: If you delete an adapter-instance or the adapter itself, all the states in that instance are also deleted! If you haven't saved your states, you loose all that work.
-
+### 5. Export/save the ecoflow_catshape object-tree to a JSON-file.
+I strongly recommend that you export/save the complete ecoflow_catshape object-tree to a JSON-file. Use the "Save objects tree as JSON file" action in ioBroker. 
+<br/>Whenever you change or add any states, don't do it in ioBroker directly, but rather do it in your file and then use the "add objects tree from JSON file" action in ioBroker.
+<br/>This way you have your states always up to date saved in a file and you can easily recreate them in ioBroker if needed.
+<br/>Keep in mind: If you delete an adapter-instance or the adapter itself, all the states in that instance are also deleted!.
 
 ## Configuration
 
@@ -115,7 +115,7 @@ The mapping between a state and the JSON-data delivered by the API is done in th
 
 Lets say you want a state for the read-only property "20_1.pv2Temp". This is how the state definition would look like. Example 1:
 ``` 
-  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp": {
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp": {
     "type": "state",
     "common": {
       "type": "number",
@@ -131,7 +131,7 @@ Lets say you want a state for the read-only property "20_1.pv2Temp". This is how
         "valueFactor": 0.1
       }
     },
-    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp",
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp",
     "acl": {
       "object": 1636,
       "state": 1636,
@@ -215,27 +215,27 @@ The important part is the property "ecoflowApi" within "native":
 
 <b>ecoflowApi</b> (object) properties:
 
-<b>quotaValueKey</b> (string): Identifies the property of the JSON quota-string delivered by the API. Example value: "20_1.pv2Temp"
+<b>quotaValueKey</b> (string): Identifies the property of the JSON quota-string delivered by the API. Example value: ``` "20_1.pv2Temp" ```
 
-<b>valueFactor</b> (number): Factor to be applied to the value delivered by the API. Example value: 0.1
+<b>valueFactor</b> (number): Factor to be applied to the value delivered by the API. Example value: ``` 0.1 ```
 
-<b>valueMap</b> (object): Mapping to be applied to the value delivered by the API. Example value: {"0": false,"1": true}
+<b>valueMap</b> (object): Mapping to be applied to the value delivered by the API. Example value: ``` {"0": false,"1": true} ```
 
-<b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: "params.supplyPriority"
+<b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: ``` "params.supplyPriority" ```
 
 <b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
 <br/>  Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
-<br/>  Example value: {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}}
+<br/>  Example value: ``` {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}} ```
 <br/>  You don't have to fill in the value for "sn". This serves only as a template which will be used at runtime.
 
 For read-write states the properties "setValueKey" and "setValueData" are neccessary.
 <br/>For read-only states they are not needed.
 
-<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels and/or folders according to your needs. 
+<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels according to your needs. 
 <br/>In the Example 1 above the id 
-<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.photoVoltaic.pv2Temp"
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp"
 <br/>could be replaced by 
-<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.temperatureSensors.pv2Temperature"
+<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.pv2Temperature"
 
 ### Daily cumulate state values
 
@@ -298,6 +298,10 @@ In the Example above that would be the state:
 <b>In https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc you find examples for DeltaPro, PowerStream and RiverPro.</b>
 
 ## Changelog
+
+### 0.0.5
+* (CatShape) resolved: errors in configuration checking
+* (CatShape) improvements in README file
 
 ### 0.0.4
 * (CatShape) resolved: errors when quota-value for a state was of type object

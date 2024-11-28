@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "ecoflow_catshape",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "news": {
+            "0.0.5": {
+                "en": "resolved: errors in configuration checking"
+            },
             "0.0.4": {
                 "en": "resolved: errors when quota-value for a state was of type object"
             },

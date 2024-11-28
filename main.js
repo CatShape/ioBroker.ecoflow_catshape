@@ -51,13 +51,13 @@ class EcoflowCatshape extends adapterCore.Adapter {
             return;
         }
         
-        let numA = 0;
         let numApiKeysLen = 0;
+        let numA = 0;
+        let objA = {};
         let objAllApiKeys = {};
         let numArrayLen = 0;
         let objConfigDevice = {};
         let stringId = '';
-        let objStateObj = {};
         
         try {
             this.objCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
@@ -77,26 +77,39 @@ class EcoflowCatshape extends adapterCore.Adapter {
         }
         
         numApiKeysLen = this.config.apiKeys.length;
-        if (numApiKeysLen < 1) {
-            this.log.error('Config "API keys": At least one entry is needed');
-            return;
-        }
         for (numA = 1; numA <= numApiKeysLen; numA = numA + 1) {
-            if (!this.config.apiKeys[numA - 1].baseUrl) {
-                this.log.error('Config "API keys": Select URL');
+            objA = this.config.apiKeys[numA - 1];
+            if (!objA.accessKey) {
+                this.log.error('EcoFlow API keys configuration: ' + numA.toFixed(0) + '. "API access key" is empty');
                 return;
             }
-            objAllApiKeys[numA.toFixed(0)] = this.config.apiKeys[numA - 1];
+            if (!objA.secretKey) {
+                this.log.error('EcoFlow API keys configuration: ' + numA.toFixed(0) + '. "API secret key" is empty');
+                return;
+            }
+            if (!objA.baseUrl) {
+                this.log.error('EcoFlow API keys configuration: ' + numA.toFixed(0) + '. "URL" is empty');
+                return;
+            }
+            objAllApiKeys[numA.toFixed(0)] = objA;
         }
         this.log.debug('objAllApiKeys: ' + JSON.stringify(objAllApiKeys));
         
         numArrayLen = this.config.devices.length;
-        if (numArrayLen < 1) {
-            this.log.error('Config "EcoFlow devices": At least one entry is needed');
+        if ((numArrayLen > 0) && (numApiKeysLen < 1)) {
+            this.log.error('EcoFlow API keys configuration: At least one record is needed');
             return;
         }
-        for (numA = 0; numA < numArrayLen; numA = numA + 1) {
-            objConfigDevice = this.config.devices[numA];
+        for (numA = 1; numA <= numArrayLen; numA = numA + 1) {
+            objConfigDevice = this.config.devices[numA - 1];
+            if (!objConfigDevice.serialNumber) {
+                this.log.error('EcoFlow devices configuration: ' + numA.toFixed(0) + '. "Device serial number" is empty');
+                return;
+            }
+            if (!objConfigDevice.apiKey) {
+                this.log.error('EcoFlow devices configuration: ' + numA.toFixed(0) + '. "API key to use" is empty');
+                return;
+            }
             if (objConfigDevice.apiKey > numApiKeysLen) {
                 objConfigDevice.apiKey = numApiKeysLen;
             }
@@ -120,13 +133,12 @@ class EcoflowCatshape extends adapterCore.Adapter {
         // Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
         // this.subscribeStates('*');
         
-        const objA = await this.getStatesAsync('*');
-        for (stringId in objA) {
+        for (stringId in (await this.getStatesAsync('*'))) {
             //this.log.debug('stringId: ' + stringId);
-            objStateObj = await this.getObjectAsync(stringId);
+            objA = await this.getObjectAsync(stringId);
             
-            if (objStateObj.native.hasOwnProperty('ecoflowApi')) {
-                if (objStateObj.native.ecoflowApi.hasOwnProperty('setValueData')) {
+            if (objA.native.hasOwnProperty('ecoflowApi')) {
+                if (objA.native.ecoflowApi.hasOwnProperty('setValueData')) {
                     this.subscribeStates(stringId);
                 }
             }
