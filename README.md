@@ -300,7 +300,8 @@ In the Example above that would be the state:
 ## Changelog
 
 ### 0.0.5
-* (CatShape) some code improvements
+* (CatShape) resolved: errors in configuration checking
+* (CatShape) improvements in README file
 
 ### 0.0.4
 * (CatShape) resolved: errors when quota-value for a state was of type object
