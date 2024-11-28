@@ -15,32 +15,6 @@
       "ownerGroup": "system.group.administrator"
     }
   },
-  "ecoflow_catshape.0.P2EBZXXXXXXXXXX.batSocCalc": {
-    "common": {
-      "type": "number",
-      "unit": "%",
-      "name": "batSocCalc",
-      "desc": "Manuell erzeugt",
-      "role": "state",
-      "read": true,
-      "write": false,
-      "def": 60
-    },
-    "type": "state",
-    "native": {},
-    "_id": "ecoflow_catshape.0.P2EBZXXXXXXXXXX.batSocCalc",
-    "acl": {
-      "object": 1636,
-      "state": 1636,
-      "owner": "system.user.admin",
-      "ownerGroup": "system.group.administrator"
-    },
-    "from": "system.adapter.admin.0",
-    "user": "system.user.admin",
-    "ts": 1732410800095,
-    "val": 14.2,
-    "ack": true
-  },
   "ecoflow_catshape.0.P2EBZXXXXXXXXXX.bmsMaster": {
     "type": "channel",
     "common": {
@@ -333,36 +307,6 @@
     "user": "system.user.admin",
     "ts": 1732410802485,
     "val": 28.501,
-    "ack": true
-  },
-  "ecoflow_catshape.0.P2EBZXXXXXXXXXX.dsgVoltageCurve": {
-    "common": {
-      "type": "string",
-      "name": "dsgVoltageCurve",
-      "desc": "dsgVoltageCurve",
-      "role": "state",
-      "read": true,
-      "write": false,
-      "def": ""
-    },
-    "type": "state",
-    "native": {
-      "ampId": "bmsMaster.amp",
-      "volId": "bmsMaster.vol",
-      "ampCorrectionFactor": 0.04,
-      "toStateId": "batSocCalc"
-    },
-    "_id": "ecoflow_catshape.0.P2EBZXXXXXXXXXX.dsgVoltageCurve",
-    "acl": {
-      "object": 1636,
-      "state": 1636,
-      "owner": "system.user.admin",
-      "ownerGroup": "system.group.administrator"
-    },
-    "from": "system.adapter.admin.0",
-    "user": "system.user.admin",
-    "ts": 1732410802586,
-    "val": "{\n  \"0\": 28,\n  \"11\": 28.4,\n  \"14\": 28.5,\n  \"18\": 28.6,\n  \"28\": 28.86,\n  \"37\": 29.08,\n  \"50\": 29.44,\n  \"63\": 30,\n  \"80\": 30.95,\n  \"100\": 32.7\n}",
     "ack": true
   },
   "ecoflow_catshape.0.P2EBZXXXXXXXXXX.inv": {
