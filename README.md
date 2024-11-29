@@ -144,6 +144,38 @@ Lets say you want a state for the read-only property "20_1.pv2Temp". This is how
 Example 2:
 
 ``` 
+  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.batteryPackType": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "name": "Battery pack type",
+      "read": true,
+      "write": false,
+      "states": {
+        "0": "No battery",
+        "1": "Secondary pack",
+        "2": "Primary pack",
+        "3": "Primary pack"
+      }
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "20_1.bpType"
+      }
+    },
+    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.batteryPackType",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    }
+  }
+```
+
+Example 3:
+
+``` 
   "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.prioritizeBatterySupply": {
     "type": "state",
     "common": {
@@ -179,35 +211,113 @@ Example 2:
   }
 ```
 
-Example 3:
+Example 4:
 
 ``` 
-  "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.batteryPackType": {
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserve": {
     "type": "state",
     "common": {
-      "type": "number",
-      "name": "Battery pack type",
+      "type": "boolean",
+      "name": "Backup reserve",
+      "desc": "Backup reserve",
       "read": true,
-      "write": false,
-      "states": {
-        "0": "No battery",
-        "1": "Secondary pack",
-        "2": "Primary pack",
-        "3": "Primary pack"
-      }
+      "write": true,
+      "def": false
     },
     "native": {
       "ecoflowApi": {
-        "quotaValueKey": "20_1.bpType"
+        "quotaValueKey": "pd.watthisconfig",
+        "valueMap": {
+          "0": false,
+          "1": true
+        },
+        "setValueKey": "params.isConfig",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 94,
+            "isConfig": "0",
+            "bpPowerSoc": 50,
+            "minDsgSoc": 0,
+            "maxChgSoc": 100
+          }
+        },
+        "valuesForSetValueData": {
+          "params.bpPowerSoc": "pd.backupReserveLevel",
+          "params.minDsgSoc": "ems.minDsgSoc",
+          "params.maxChgSoc": "ems.maxChargeSoc"
+        }
       }
     },
-    "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.batteryPackType",
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserve",
     "acl": {
       "object": 1636,
       "state": 1636,
       "owner": "system.user.admin",
       "ownerGroup": "system.group.administrator"
-    }
+    },
+    "val": false,
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732875933564,
+    "ack": true
+  }
+```
+
+Example 5:
+
+``` 
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserveLevel": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Backup reserve level",
+      "desc": "Backup reserve level",
+      "read": true,
+      "write": true,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "def": 50
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.bppowerSoc",
+        "setValueKey": "params.bpPowerSoc",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 94,
+            "isConfig": "0",
+            "bpPowerSoc": 50,
+            "minDsgSoc": 0,
+            "maxChgSoc": 100
+          }
+        },
+        "valuesForSetValueData": {
+          "params.isConfig": "pd.backupReserve",
+          "params.minDsgSoc": "ems.minDsgSoc",
+          "params.maxChgSoc": "ems.maxChargeSoc"
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserveLevel",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732875376003,
+    "val": 50,
+    "ack": true
   }
 ```
 
@@ -223,19 +333,19 @@ The important part is the property "ecoflowApi" within "native":
 
 <b>setValueKey</b> (string): Path within the object "setValueData" to the property that will contain the value to be sent. Example value: ``` "params.supplyPriority" ```
 
-<b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the EcoFlow products.
+<b>setValueData</b> (object): The properties of this object are defined by the EcoFlow API. They can be quite different within the various EcoFlow products.
 <br/>  Please find the details in the EcoFlow API documentation (https://developer-eu.ecoflow.com/us/document/introduction).
 <br/>  Example value: ``` {"sn": "","cmdCode": "WN511_SET_SUPPLY_PRIORITY_PACK","params": {"supplyPriority": "0"}} ```
 <br/>  You don't have to fill in the value for "sn". This serves only as a template which will be used at runtime.
 
-For read-write states the properties "setValueKey" and "setValueData" are neccessary.
-<br/>For read-only states they are not needed.
+<b>valuesForSetValueData</b> (object): Unfortunately for some state-changes the API requires multiple states to be included in the "setValueData" for the request. For example Delta Pro backup reserve (Examples 4+5 above).
+<br/>The properties have the following form: ``` "[Path to the property of setValueData that must contain the value from another state]": "[ID (relative to the device) of this other state]" ```
+<br/>Example value: ``` {"params.isConfig": "pd.backupReserve", "params.minDsgSoc": "ems.minDsgSoc", "params.maxChgSoc": "ems.maxChargeSoc"} ```
 
-<b>Note: </b> You can set the id of your states in a device freely as you want. Feel free to create channels according to your needs. 
-<br/>In the Example 1 above the id 
-<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp"
-<br/>could be replaced by 
-<br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.pv2Temperature"
+For read-only states the properties "setValueKey", "setValueData" and "valuesForSetValueData" are not needed and you can skip them.
+
+<b>Note: </b> You can choose the names of your states and of the channels you put them in, freely as you want. They do not have to be the same as in the EcoFlow API.
+<br/>For example in "Example 1" above you could replace <i>ecoflow_catshape.0.HW51ZXXXXXXXXXX.heartbeat.pv2Temp</i> by <i>ecoflow_catshape.0.HW51ZXXXXXXXXXX.general.pv2Temperature</i>
 
 ### Daily cumulate state values
 
@@ -270,7 +380,7 @@ This adapter offers the possibility for any state with numeric value to have its
 ```
 
 The important part is the property "<b>cumulateDailyByTimeId</b>" within "native":
-<br/>It's value defines the id (relative to the device) of the state to hold the cumulated value.
+<br/>It's value defines the ID (relative to the device) of the state to hold the cumulated value.
 In the Example above that would be the state:
 <br/>"ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.pv1InputEnergyToday" 
 
