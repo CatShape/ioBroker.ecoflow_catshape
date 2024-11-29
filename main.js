@@ -134,12 +134,14 @@ class EcoflowCatshape extends adapterCore.Adapter {
         // this.subscribeStates('*');
         
         for (stringId in (await this.getStatesAsync('*'))) {
-            //this.log.debug('stringId: ' + stringId);
-            objA = await this.getObjectAsync(stringId);
-            
-            if (objA.native.hasOwnProperty('ecoflowApi')) {
-                if (objA.native.ecoflowApi.hasOwnProperty('setValueData')) {
-                    this.subscribeStates(stringId);
+            if (this.objConfigDevices.hasOwnProperty(stringId.split('.')[2])) {
+                //this.log.debug('stringId: ' + stringId);
+                objA = await this.getObjectAsync(stringId);
+                
+                if (objA.native.hasOwnProperty('ecoflowApi')) {
+                    if (objA.native.ecoflowApi.hasOwnProperty('setValueData')) {
+                        this.subscribeStates(stringId);
+                    }
                 }
             }
         }
@@ -217,19 +219,12 @@ class EcoflowCatshape extends adapterCore.Adapter {
      * @param {string} id
      * @param {ioBroker.State | null | undefined} state
      */
-    onStateChange(id, state) {
-        if (state) {
+    onStateChange(id, objState) {
+        if (objState) {
             // The state was changed
-            /*
-            on({id: arrayOfTriggerIds, change: 'ne', ack: false}
-                , function(objA) {
-                    ecoflowUtils.sendDeviceState(objA);
-                }
-            );
-            */
-            this.log.debug('id: ' + id + ', state: ' + JSON.stringify(state));
-            if (!state.ack) {
-                ecoflowUtils.sendDeviceState(this, id, state);
+            this.log.debug('onStateChange id: ' + id + ', objState: ' + JSON.stringify(objState));
+            if (!objState.ack) {
+                ecoflowUtils.sendDeviceState(this, id, objState);
             }
         } else {
             // The state was deleted
