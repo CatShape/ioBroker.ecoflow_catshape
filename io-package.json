@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "ecoflow_catshape",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "news": {
+            "0.0.6": {
+                "en": "new: Possibility to process more complex state-changes, where the API requires multiple states to be included in the request. For example Delta Pro backup reserve."
+            },
             "0.0.5": {
                 "en": "resolved: errors in configuration checking"
             },
