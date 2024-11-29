@@ -1,6 +1,6 @@
 {
   "name": "iobroker.ecoflow_catshape",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "EcoFlow Adapter based on official EcoFlow API",
   "author": {
     "name": "CatShape"
