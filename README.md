@@ -299,6 +299,9 @@ In the Example above that would be the state:
 
 ## Changelog
 
+### 0.0.6
+* (CatShape) new: Possibility to process more complex state-changes, where the API requires multiple states to be included in the request. For example Delta Pro backup reserve.
+
 ### 0.0.5
 * (CatShape) resolved: errors in configuration checking
 * (CatShape) improvements in README file
