@@ -1514,6 +1514,106 @@
     "user": "system.user.admin",
     "ts": 1732458113250
   },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserve": {
+    "type": "state",
+    "common": {
+      "type": "boolean",
+      "name": "Backup reserve",
+      "desc": "Backup reserve",
+      "read": true,
+      "write": true,
+      "def": false
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.watthisconfig",
+        "valueMap": {
+          "0": false,
+          "1": true
+        },
+        "setValueKey": "params.isConfig",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 94,
+            "isConfig": "0",
+            "bpPowerSoc": 50,
+            "minDsgSoc": 0,
+            "maxChgSoc": 100
+          }
+        },
+        "valuesForSetValueData": {
+          "params.bpPowerSoc": "pd.backupReserveLevel",
+          "params.minDsgSoc": "ems.minDsgSoc",
+          "params.maxChgSoc": "ems.maxChargeSoc"
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserve",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "val": false,
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732875933564,
+    "ack": true
+  },
+  "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserveLevel": {
+    "type": "state",
+    "common": {
+      "type": "number",
+      "unit": "%",
+      "name": "Backup reserve level",
+      "desc": "Backup reserve level",
+      "read": true,
+      "write": true,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "def": 50
+    },
+    "native": {
+      "ecoflowApi": {
+        "quotaValueKey": "pd.bppowerSoc",
+        "setValueKey": "params.bpPowerSoc",
+        "setValueData": {
+          "sn": "",
+          "operateType": "TCP",
+          "params": {
+            "cmdSet": 32,
+            "id": 94,
+            "isConfig": "0",
+            "bpPowerSoc": 50,
+            "minDsgSoc": 0,
+            "maxChgSoc": 100
+          }
+        },
+        "valuesForSetValueData": {
+          "params.isConfig": "pd.backupReserve",
+          "params.minDsgSoc": "ems.minDsgSoc",
+          "params.maxChgSoc": "ems.maxChargeSoc"
+        }
+      }
+    },
+    "_id": "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.backupReserveLevel",
+    "acl": {
+      "object": 1636,
+      "state": 1636,
+      "owner": "system.user.admin",
+      "ownerGroup": "system.group.administrator"
+    },
+    "from": "system.adapter.admin.0",
+    "user": "system.user.admin",
+    "ts": 1732875376003,
+    "val": 50,
+    "ack": true
+  },
   "ecoflow_catshape.0.DCEBZXXXXXXXXXX.pd.carState": {
     "type": "state",
     "common": {
