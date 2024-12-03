@@ -68,7 +68,8 @@
                     "title": "API secret key",
                     "filter": false,
                     "sort": false,
-                    "default": ""
+                    "default": "",
+                    "visible": true
                 },
                 {
                     "type": "select",
@@ -136,8 +137,6 @@
                         { "value": "9", "label": "9." }
                     ],
                     "title": "API key to use",
-                    "filter": false,
-                    "sort": false,
                     "default": 1
                 },
                 {
