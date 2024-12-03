@@ -62,7 +62,6 @@
             "CatShape"
         ],
         "keywords": [
-            "ioBroker",
             "EcoFlow",
             "PowerStream",
             "powerstation",
@@ -71,7 +70,6 @@
             "Powerkit",
             "PowerOcean",
             "SmartHomePanel",
-            "Smart Home",
             "home automation"
         ],
         "licenseInformation": {
