@@ -143,6 +143,9 @@ class EcoflowCatshape extends adapterCore.Adapter {
                         this.subscribeStates(stringId);
                     }
                 }
+                if (stringId.split('.')[3] == 'name') {
+                    this.subscribeStates(stringId);
+                }
             }
         }
         
@@ -216,19 +219,26 @@ class EcoflowCatshape extends adapterCore.Adapter {
     
     /**
      * Is called if a subscribed state changes
-     * @param {string} id
-     * @param {ioBroker.State | null | undefined} state
+     * @param {string} stringId
+     * @param {ioBroker.State | null | undefined} state. Properties: [val, ack, ts, q, from, user, lc]
      */
-    onStateChange(id, objState) {
+    onStateChange(stringId, objState) {
         if (objState) {
             // The state was changed
-            this.log.debug('onStateChange id: ' + id + ', objState: ' + JSON.stringify(objState));
             if (!objState.ack) {
-                ecoflowUtils.sendDeviceState(this, id, objState);
+                this.log.debug('onStateChange id: ' + stringId + ', objState: ' + JSON.stringify(objState));
+                ecoflowUtils.sendDeviceState(this, stringId, objState);
+            }
+            let arrayT = stringId.split('.');
+            if (arrayT[3] == 'name') {
+                if (objState.lc == objState.ts) { // Device name wurde geändert --> in common.name im device-object auch anpassen
+                    this.log.debug('onStateChange id: ' + stringId + ', objState: ' + JSON.stringify(objState));
+                    ecoflowUtils.updateDeviceObjName(this, arrayT[2], objState.val);
+                }
             }
         } else {
             // The state was deleted
-            this.log.debug('state ' + id + ' deleted');
+            this.log.debug('state ' + stringId + ' deleted');
         }
     }
     
