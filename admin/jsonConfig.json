@@ -1,5 +1,5 @@
 {
-    "i18n": false,
+    "i18n": true,
     "type": "panel",
     "items": {
         "cronSchedule": {
@@ -25,7 +25,12 @@
         "_newLine1": {
             "type": "staticText",
             "text": "",
-            "newLine": true
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "_apiKeysHeader": {
             "newLine": true,
@@ -41,7 +46,12 @@
         "_introTableApiKeys": {
             "type": "staticText",
             "text": "Please add one entry for each of your EcoFlow API keys.",
-            "newLine": true
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "apiKeys": {
             "newLine": true,
@@ -101,7 +111,12 @@
         "_introTableDevices": {
             "type": "staticText",
             "text": "Please add one entry for each of your EcoFlow devices.",
-            "newLine": true
+            "newLine": true,
+            "xs": 12,
+            "sm": 12,
+            "md": 12,
+            "lg": 12,
+            "xl": 12
         },
         "devices": {
             "newLine": true,
