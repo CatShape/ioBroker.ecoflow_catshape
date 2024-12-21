@@ -25,7 +25,7 @@
     "url": "https://github.com/CatShape/ioBroker.ecoflow_catshape"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 18"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.2.2",
