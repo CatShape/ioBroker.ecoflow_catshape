@@ -4,19 +4,24 @@
         "version": "0.0.6",
         "news": {
             "0.0.6": {
-                "en": "new: Possibility to process more complex state-changes, where the API requires multiple states to be included in the request. For example Delta Pro backup reserve."
+                "en": "new: Possibility to process more complex state-changes, where the API requires multiple states to be included in the request. For example: Delta Pro backup reserve.",
+                "de": "neu: Möglichkeit komplexere Zustandsänderungen zu verarbeiten, bei denen die API mehrere Zustandswerte im Request erfordert. Zum Beispiel: Delta Pro backup reserve."
             },
             "0.0.5": {
-                "en": "resolved: errors in configuration checking"
+                "en": "resolved: errors in configuration checking",
+                "de": "behoben: Fehler im Konfigurations-Check"
             },
             "0.0.4": {
-                "en": "resolved: errors when quota-value for a state was of type object"
+                "en": "resolved: errors when quota-value for a state was of type object",
+                "de": "behoben: Fehler wenn der quota-Wert für einen Zustand vom Typ object ist"
             },
             "0.0.3": {
-                "en": "new configuration: API URL"
+                "en": "new configuration: API URL",
+                "de": "neue Konfiguration: API URL"
             },
             "0.0.2": {
-                "en": "some code improvements"
+                "en": "some code improvements",
+                "de": "einige Code Verbesserungen"
             },
             "0.0.1": {
                 "en": "initial release",
@@ -93,7 +98,7 @@
         },
         "dependencies": [
             {
-                "js-controller": ">=4.0.11"
+                "js-controller": ">=4.0.24"
             }
         ],
         "globalDependencies": [
