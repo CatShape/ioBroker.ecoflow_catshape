@@ -1,0 +1,13 @@
+{
+    "ecoflow_catshape adapter settings": "ecoflow_catshape adapter settings",
+    "node-cron schedule for getting data from EcoFlow": "node-cron schedule for getting data from EcoFlow",
+    "Reset time for cumulate daily states (state is set to 0 at this time)": "Reset time for cumulate daily states (state is set to 0 at this time)",
+    "EcoFlow API keys configuration": "EcoFlow API keys configuration",
+    "Please add one entry for each of your EcoFlow API keys.": "Please add one entry for each of your EcoFlow API keys.",
+    "URL (depends on the country your EcoFlow-account is connected to)": "URL (depends on the country your EcoFlow-account is connected to)",
+    "EcoFlow devices configuration": "EcoFlow devices configuration",
+    "Please add one entry for each of your EcoFlow devices.": "Please add one entry for each of your EcoFlow devices.",
+    "Device serial number": "Device serial number",
+    "Do not update states if device is offline": "Do not update states if device is offline",
+    "Update quota state": "Update quota state"
+}
