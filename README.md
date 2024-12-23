@@ -75,7 +75,7 @@ The device data delivered by the EcoFlow API, comes as one JSON-string containin
 
 ## How the adapter works
 
-### Every time the node-cron schedule provided in the configuration is triggered, the following 3 steps are executed.
+### Every time the node-cron schedule provided in the configuration is triggered, the following 3 steps are executed
 
 <b>1. For each of the devices in the configuration: </b>
 
