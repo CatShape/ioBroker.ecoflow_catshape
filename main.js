@@ -61,15 +61,6 @@ class EcoflowCatshape extends adapterCore.Adapter {
         
         try {
             this.objConfigCumulateDailyResetTime = JSON.parse(this.config.cumulateDailyResetTime);
-            if (!this.objConfigCumulateDailyResetTime.hasOwnProperty('hour')) {
-                this.objConfigCumulateDailyResetTime.hour = 0;
-            }
-            if (!this.objConfigCumulateDailyResetTime.hasOwnProperty('minute')) {
-                this.objConfigCumulateDailyResetTime.minute = 0;
-            }
-            if (!this.objConfigCumulateDailyResetTime.hasOwnProperty('second')) {
-                this.objConfigCumulateDailyResetTime.second = 0;
-            }
         } catch (error) {
             this.log.error('Config "Reset time for cumulate daily states" is invalid. It has to be JSON-format. Example: {"hour": 3, "minute": 30}');
             //this.log.error(error);
