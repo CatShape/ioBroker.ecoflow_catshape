@@ -37,18 +37,19 @@
                 "zh-cn": "首次出版"
             }
         },
+        "title": "EcoFlow HTTP",
         "titleLang": {
-            "en": "ecoflow_catshape",
-            "de": "ecoflow_catshape",
-            "ru": "ecoflow_catshape",
-            "pt": "ecoflow_catshape",
-            "nl": "ecoflow_catshape",
-            "fr": "ecoflow_catshape",
-            "it": "ecoflow_catshape",
-            "es": "ecoflow_catshape",
-            "pl": "ecoflow_catshape",
-            "uk": "ecoflow_catshape",
-            "zh-cn": "ecoflow_catshape"
+            "en": "EcoFlow HTTP",
+            "de": "EcoFlow HTTP",
+            "ru": "EcoFlow HTTP",
+            "pt": "EcoFlow HTTP",
+            "nl": "EcoFlow HTTP",
+            "fr": "EcoFlow HTTP",
+            "it": "EcoFlow HTTP",
+            "es": "EcoFlow HTTP",
+            "pl": "EcoFlow HTTP",
+            "uk": "EcoFlow HTTP",
+            "zh-cn": "EcoFlow HTTP"
         },
         "desc": {
             "en": "EcoFlow Adapter based on official EcoFlow API (HTTP)",
