@@ -37,7 +37,7 @@ to understand how to set up your states. There you find many examples for differ
 <br/>For more information please read the section [How to set up the device states](#How-to-set-up-the-device-states).
 
 As soon as you add a new read-only state, the adapter will start updating its value. No instance restart is needed.
-<br/>If you add a new read-write state, you have to restart the instance in order for the adapter to register value-changes of the new state!
+<br/><b>If you add a new read-write state, you have to restart the instance in order for the adapter to register value-changes of the new state!</b>
 
 ### 5. Export/save the ecoflow_catshape object-tree to a JSON-file.
 I strongly recommend to export/save the complete ecoflow_catshape object-tree to a JSON-file. Use the "Save objects tree as JSON file" action in ioBroker. 
