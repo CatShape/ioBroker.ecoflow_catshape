@@ -547,7 +547,7 @@
           "sn": "",
           "cmdCode": "WN511_SET_PERMANENT_WATTS_PACK",
           "params": {
-            "permanentWatts": "0"
+            "permanentWatts": 0
           }
         }
       }
