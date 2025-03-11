@@ -261,7 +261,7 @@
     "native": {
       "ecoflowApi": {
         "quotaValueKey": "20_1.invOutputCur",
-        "valueFactor": 0.1
+        "valueFactor": 0.001
       }
     },
     "_id": "ecoflow_catshape.0.HW51ZXXXXXXXXXXX.heartbeat.invOutputCur",
