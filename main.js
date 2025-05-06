@@ -34,7 +34,7 @@ class EcoflowCatshape extends adapterCore.Adapter {
         
         this.objConfigDevices = {};
         this.objConfigCumulateDailyResetTime = {};
-        this.arrayQuotaKeyNotFound = [];
+        this.objQuotaKeyNotFound = {};
     }
     
     /**
