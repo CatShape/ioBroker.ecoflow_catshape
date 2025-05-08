@@ -30,7 +30,7 @@ For each of the devices in the configuration the following ioBroker objects are 
 Only the 4 basic states "name", "productName", "online" and "quota" are automatically created by the adapter.
 <br/>It is up to you to create more states within the devices.
 <br/>In the state "quota" you see the complete data-set provided by the EcoFlow API for your device. It comes as a JSON string.
-<br/>You want to use some (or all) of theese property-value pairs as states.
+<br/>You want to use some (or all) of these property-value pairs as states.
 <br/>Please check out the files in <b>https://github.com/CatShape/ioBroker.ecoflow_catshape/tree/main/doc</b> 
 to understand how to set up your states. There you find many examples for different EcoFlow products. 
 <br/>The mapping between the ioBroker state and the "quota" properties is done in the "native" section of the state-definition.
@@ -92,7 +92,7 @@ Request all devices from the EcoFlow API. Response example:
 ] 
 ```
 
-<b>3. For each of theese devices (if included in the configuration): </b>
+<b>3. For each of these devices (if included in the configuration): </b>
 
 Request device-data from the EcoFlow API. Response example (quota): 
 ``` {"20_1.pv2Temp":190,"20_1.invOutputWatts":0,"20_1.pv2RelayStatus":0,"20_1.mqttTlsLastErr":0,"20_1.batInputVolt":493,"20_1.invDemandWatts":200,"20_1.wifiEncryptMode":3,"20_1.pv2OpVolt":0, ...} ```
