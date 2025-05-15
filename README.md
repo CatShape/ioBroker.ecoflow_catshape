@@ -49,7 +49,7 @@ I strongly recommend to export/save the complete ecoflow_catshape object-tree to
 
 ### node-cron schedule for getting data from EcoFlow
 Examples: ``` 5 * * * * * ``` (once per minute), ``` */10 * * * * * ``` (every 10 seconds). 
-<br/>For more information please visit: https://github.com/node-cron/node-cron/blob/master/README.md
+<br/>For more information please visit: https://nodecron.com/cron-syntax.html
     
 ### Reset time for cumulate daily states (state is set to 0 at this time)
 This adapter offers the possibility for any state with numeric value to have its value cumulated over the course of a day into another state.
