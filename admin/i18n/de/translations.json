@@ -1,7 +1,7 @@
 {
     "ecoflow_catshape adapter settings": "Adaptereinstellungen für ecoflow_catshape",
     "node-cron schedule for getting data from EcoFlow": "node-cron Zeitplan für die Abfrage der Daten von EcoFlow",
-    "Reset time for cumulate daily states (state is set to 0 at this time)": "Reset Zeit für kumuliere täglich Zustände (Zustand wird um diese Zeit auf 0 gesetzt)",
+    "Reset time for cumulate daily states (state is set to 0 at this time)": "Reset Zeit für täglich kumulierte Zustände (Zustand wird um diese Zeit auf 0 gesetzt)",
     "EcoFlow API keys configuration": "EcoFlow API keys Konfiguration",
     "Please add one entry for each of your EcoFlow API keys.": "Bitte einen Eintrag für jeden deiner EcoFlow API keys hinzufügen.",
     "URL (depends on the country your EcoFlow-account is connected to)": "URL (abhängig vom Land mit dem dein EcoFlow-Konto verbunden ist)",
